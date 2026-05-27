@@ -7,8 +7,13 @@ const handleInputChange = (e) => {    setInput(e.target.value);}
 const clearInput= ()=>{        setInput("")
 }
     const handleSubmit = ()=>{
+        if (input!=""){
       onBuscar(input.trim())
       clearInput();
+        }
+        else{
+            return
+        }
 }
   
     return(

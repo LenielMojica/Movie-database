@@ -17,13 +17,14 @@ const res=  await fetch(`${API_URL}?apikey=${import.meta.env.VITE_API_KEY}&s=${t
 const data = await res.json()
 setMovies(data.Search)
 
-if (data.Response==='false'){
-  console.log("No existe la pelicula")
+if (data.Response==='False'){
+  console.log("Error al buscar")
+  setMovies([])
 }
 
  
 
-console.log(data)
+ 
   }
   catch (error){
 console.log(error)
@@ -31,21 +32,26 @@ console.log(error)
   
 
 }
+console.log(movies)
 
  return (
 <div>
 
 
   <Header onBuscar={fetchMovies}/>
-{movies.map((p)=>{
-  return
+  
+{
+
+movies.map((p)=>{
+  return(
  <MovieCard
-  title={movies.Title}
-  year={movies.Year}
-  id={movies.imdbID}
-  poster={movies.Poster}
-  type={movies.Type}
-  />
+  title={p.Title}
+  year={p.Year}
+  id={p.imdbID}
+  poster={p.Poster}
+  type={p.Type}
+  key={p.imdbID}
+  />)
 })}
   
 
