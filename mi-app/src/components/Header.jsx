@@ -1,10 +1,16 @@
 import { useState } from 'react';
-const Header = ({ onBuscar }) => {
+const Header = ({ onBuscar,onShowFav, onClearFavorites }) => {
 const [input, setInput] = useState("")
+
  console.log(input)
 
 const handleInputChange = (e) => {    setInput(e.target.value);}
-const clearInput= ()=>{        setInput("")
+const clearInput= ()=>{
+            setInput("")
+}
+const clearFavorites =()=>{
+
+onClearFavorites()
 }
     const handleSubmit = ()=>{
         if (input!=""){
@@ -14,6 +20,9 @@ const clearInput= ()=>{        setInput("")
         else{
             return
         }
+}
+const getFavorites = () =>{
+    onShowFav()
 }
   
     return(
@@ -46,6 +55,29 @@ const clearInput= ()=>{        setInput("")
          >
                 Search
             </button>
+            <div className="px-8 py-4 flex gap-3">
+        <button
+          className="filter bg-red-600 text-white px-4 py-1 rounded-full text-sm">
+            All</button>
+        <button 
+        data-type="all" id="clear-favorites" 
+        className="hidden filter bg-red-600 text-white px-4 py-1 rounded-full text-sm"
+        onClick={clearFavorites}
+        >
+            Clear Favorites</button>
+        <button data-type="all" id="view-favorites"
+         className="filter bg-red-600 text-white px-4 py-1 rounded-full text-sm"
+         onClick={getFavorites}
+         >
+            View Favorites</button>
+            
+    </div>
+     <main class="px-8 py-4 results-container">
+        <p id="results-message" class="text-zinc-500 font-mono mb-4"></p>
+        <div id="movies-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            
+        </div>
+    </main>
         </div>
     </nav>
 

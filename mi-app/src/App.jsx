@@ -8,8 +8,30 @@ import { useState, useEffect } from 'react'
 
 const App = () => {
        const [movies, setMovies]= useState([])
+       const [favorites, setFavorites]= useState([])
+const [showFavorite,setShowFavorite]= useState(false)
+const toggleShowFavorite = () =>{
+setShowFavorite(!showFavorite)
+}
+ const toggleFavorite = (p)=>{
+  const isFavorite = favorites.some(f=>f.imdbID===p.imdbID)
+  if (isFavorite){
+   
 
+    
+     setFavorites(favorites.filter(f=>f.imdbID !== p.imdbID))
+  
+  }
+else{
+setFavorites([...favorites, p])
+
+}
  
+ }
+ const clearFavorites =()=>{
+  setFavorites([])
+ }
+console.log("favoritos",favorites)
 const  fetchMovies = async (title)=> {
   
   try {
@@ -33,30 +55,27 @@ console.log(error)
 
 }
 console.log(movies)
+const lista = showFavorite ? favorites : movies
 
- return (
-<div>
+return (
+  <div>
+    <Header onBuscar={fetchMovies} onShowFav={toggleShowFavorite}  onClearFavorites={clearFavorites}/>
+    {lista.map((p) => (
+      <MovieCard
+        title={p.Title}
+        year={p.Year}
+        id={p.imdbID}
+        poster={p.Poster}
+        type={p.Type}
+        key={p.imdbID}
+        onToggleFavorite={toggleFavorite}
+       
+      />
+    ))}
+  </div>
+)
 
-
-  <Header onBuscar={fetchMovies}/>
-  
-{
-
-movies.map((p)=>{
-  return(
- <MovieCard
-  title={p.Title}
-  year={p.Year}
-  id={p.imdbID}
-  poster={p.Poster}
-  type={p.Type}
-  key={p.imdbID}
-  />)
-})}
-  
-
-</div>
-  )
 }
+
 
 export default App
