@@ -1,5 +1,5 @@
 import { useState } from 'react';
-const Header = ({ onBuscar,onShowFav, onClearFavorites }) => {
+const Header = ({ onBuscar,onShowFav, onClearList,onShowAll,theresFavorites,theresSearch }) => {
 const [input, setInput] = useState("")
 
  console.log(input)
@@ -8,11 +8,12 @@ const handleInputChange = (e) => {    setInput(e.target.value);}
 const clearInput= ()=>{
             setInput("")
 }
-const clearFavorites =()=>{
+const clearList =(l)=>{
 
-onClearFavorites()
+onClearList(l)
 }
-    const handleSubmit = ()=>{
+
+const handleSubmit = ()=>{
         if (input!=""){
       onBuscar(input.trim())
       clearInput();
@@ -24,7 +25,10 @@ onClearFavorites()
 const getFavorites = () =>{
     onShowFav()
 }
-  
+const getAll = () =>{
+    onShowAll()
+}
+
     return(
        
     <nav className="bg-zinc-950 px-8 py-4 flex items-center justify-between border-b border-zinc-800">
@@ -56,28 +60,41 @@ const getFavorites = () =>{
                 Search
             </button>
             <div className="px-8 py-4 flex gap-3">
-        <button
-          className="filter bg-red-600 text-white px-4 py-1 rounded-full text-sm">
+       
+      
+           <button
+          className="filter border-b cursor-pointer text-white px-4 py-1 rounded-full text-sm"
+          onClick={getAll}
+          >
             All</button>
-        <button 
-        data-type="all" id="clear-favorites" 
-        className="hidden filter bg-red-600 text-white px-4 py-1 rounded-full text-sm"
-        onClick={clearFavorites}
-        >
-            Clear Favorites</button>
         <button data-type="all" id="view-favorites"
-         className="filter bg-red-600 text-white px-4 py-1 rounded-full text-sm"
+         className="filter cursor-pointer text-white  px-4 py-1 rounded-full text-sm"
          onClick={getFavorites}
          >
-            View Favorites</button>
+             Favorites</button>
+            {theresFavorites && 
+                 <button 
+        data-type="all" id="clear-favorites" 
+        className=" filter cursor-pointer bg-red-600 text-white px-4 py-1 rounded-full text-sm"
+        onClick={()=>clearList("favorites")}
+      
+        >
+         
+            Clear Favorites</button>}
+            {theresSearch && 
+             <button 
+        data-type="all" id="clear-search" 
+        className=" filter cursor-pointer bg-red-600 text-white px-4 py-1 rounded-full text-sm"
+        onClick={()=>clearList("all")}
+        >
+            Clear Search</button>
+}
+           
+       
+          
             
     </div>
-     <main class="px-8 py-4 results-container">
-        <p id="results-message" class="text-zinc-500 font-mono mb-4"></p>
-        <div id="movies-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            
-        </div>
-    </main>
+    
         </div>
     </nav>
 

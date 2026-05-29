@@ -1,10 +1,17 @@
 import { useState } from "react";
 const movie={}
-const MovieCard =({title,id,type,year,poster, onToggleFavorite}) => {
+const MovieCard =({title,id,type,year,poster, onToggleFavorite,isFavorite}) => {
 
    const saveFavorites = ()=>{
     onToggleFavorite({imdbID:id,Title:title,Type:type,Year:year,Poster:poster})
+
+}
+
+   const toggleFavButton= ()=>{
+
+
    }
+   const favoriteColor= isFavorite ? "text-yellow-400": "text-zinc-200"
 return (
     <div>
         <div className="relative">
@@ -14,7 +21,7 @@ return (
                 className="w-full h-72 object-cover"
             ></img>
             <button
-                className="favorite-button absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/60 ${favoriteColor} shadow-md backdrop-blur-sm transition hover:scale-110 hover:bg-black/80 hover:text-yellow-400"
+                className={`favorite-button absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/60 ${favoriteColor} shadow-md backdrop-blur-sm transition hover:scale-110 hover:bg-black/80 hover:text-yellow-400`}
                 aria-label="Toggle favorite"
                 data-id={id}
                onClick={saveFavorites}
