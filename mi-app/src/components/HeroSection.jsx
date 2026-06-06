@@ -1,0 +1,1 @@
+const HeroSection = ({poster,title,description})

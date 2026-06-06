@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 const movie={}
 const MovieCard =({title,id,type,year,poster, onToggleFavorite,isFavorite}) => {
 
@@ -7,10 +8,7 @@ const MovieCard =({title,id,type,year,poster, onToggleFavorite,isFavorite}) => {
 
 }
 
-   const toggleFavButton= ()=>{
-
-
-   }
+   
    const favoriteColor= isFavorite ? "text-yellow-400": "text-zinc-200"
 return (
     <div>
@@ -18,7 +16,7 @@ return (
             <img
                 src={poster}
                 alt=""
-                className="w-full h-72 object-cover"
+                className="w-full h-full object-cover"
             ></img>
             <button
                 className={`favorite-button absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/60 ${favoriteColor} shadow-md backdrop-blur-sm transition hover:scale-110 hover:bg-black/80 hover:text-yellow-400`}
@@ -34,7 +32,9 @@ return (
         <div className="p-3">
             <p className="text-white font-semibold text-sm truncate">{title}</p>
             <p className="text-sm text-gray-400 mb-3">{year} | {type}</p>
-            <p className="text-amber-400 font-medium text-sm">View details</p>
+           <Link to={`/details/${id}`} ><p className="text-amber-400 font-medium text-sm"
+
+            >View details</p> </Link>
         </div></div>
   
 )

@@ -1,10 +1,10 @@
 const API_URL = "http://www.omdbapi.com/";
 
-import Header from './components/Header'
+import Home from './components/Home'
 import MovieCard from './components/MovieCard';
 import { useState, useEffect } from 'react'
-
-
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import Details from './components/Details'
 
 const App = () => {
        const [movies, setMovies]= useState([])
@@ -12,14 +12,20 @@ const App = () => {
 const [showFavorite,setShowFavorite]= useState(false)
 const [showAll,setShowAll]= useState(false)
 const [view,setView]=useState("All")
+const [loading, setLoading]=useState(false)
+const [selected, setSelected]=useState()
+const [isSelected,setIsSelected]=useState(false)
 const getAll=()=>{
 setView("All")
 }
 
 const getFavorite = () =>{
   setView("Favorites")
-setMovies([])
 
+
+}
+const toggleView= ()=>{
+setIsSelected(true)
 }
 
  const toggleFavorite = (p)=>{
@@ -31,6 +37,7 @@ setMovies([])
      setFavorites(favorites.filter(f=>f.imdbID !== p.imdbID))
  
   }
+
 else{
 setFavorites([...favorites, p])
 
@@ -47,12 +54,15 @@ setMovies([])
   }
  }
 console.log("favoritos",favorites)
+ 
 const  fetchMovies = async (title)=> {
   
   try {
+    setLoading(true)
 const res=  await fetch(`${API_URL}?apikey=${import.meta.env.VITE_API_KEY}&s=${title}`)
 const data = await res.json()
 setMovies(data.Search)
+setView("All")
 
 if (data.Response==='False'){
   console.log("Error al buscar")
@@ -66,10 +76,14 @@ if (data.Response==='False'){
   catch (error){
 console.log(error)
   }
+  finally {
+    setLoading(false)
+  }
   
 
 }
 console.log(movies)
+ 
 const lista = view==="Favorites" ? favorites : view==="All" ? movies: movies
 const noFavorites = view==="Favorites" && favorites.length===0 
 
@@ -78,13 +92,8 @@ useEffect(() => {
     setTimeout(() => setView("All"), 3000)
   }
 }, [noFavorites])
-
-return (
-  
-  <div>
-     
-        
-    <Header 
+if (loading) return (
+<div>  <Home 
     onBuscar={fetchMovies} 
     onShowFav={getFavorite}  
      onShowAll={getAll} 
@@ -93,38 +102,47 @@ return (
     theresSearch={movies.length >0}
     
     />
-   <main className="px-8 py-4 results-container">
-      <p id="results-message" className="text-zinc-500 font-mono mb-4"></p>
-        {noFavorites ?(
-
-              <div className="flex items-center justify-center py-20">
-      <p className="text-red-500 font-mono text-lg">
-        No tienes películas en favoritos  
-      </p>
+    <div className="min-h-screen bg-gray-950 text-white flex items-center justify-center">
+      <p className="text-xl animate-pulse">Loading search</p>
     </div>
-        ) :(
-        <div id="movies-grid" className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-           
-    {
+    </div>
+  )
+return (
+  
+  <div>
+     
+     
+     <Routes>
+
+       
+        <Route path="/" element={<Home
+        view={view}
+        onBuscar={fetchMovies}
+      
+    onShowFav={getFavorite}  
+     onShowAll={getAll} 
+    onClearList={clearList}
+    theresFavorites={favorites.length>0}
+    theresSearch={movies.length >0}
     
-    lista.map((p) => (
-      <MovieCard
-        title={p.Title}
-        year={p.Year}
-        id={p.imdbID}
-        poster={p.Poster}
-        type={p.Type}
-        key={p.imdbID}
-        onToggleFavorite={toggleFavorite}
-        isFavorite={favorites.some(f=>f.imdbID===p.imdbID)}
+        lista={lista}
+    noFavorites={noFavorites}
+    favorites={favorites}
+    toggleFavorite={toggleFavorite}
+        />} />
+        <Route path="/details/:movieId" element={<Details
+
+
+        />} />
        
-       
-      />
-    ))}
-    </div>)}
-    </main>
+      </Routes>
+
+        
+    
+   
   </div>
 )
+
 
 }
 
