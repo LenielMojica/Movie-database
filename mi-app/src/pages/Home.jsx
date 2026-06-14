@@ -2,12 +2,29 @@ import { useState } from 'react';
 import MovieCard from '../components/MovieCard';
 import NavBar from '../components/NavBar';
 import HeroSection from '../components/HeroSection'
-const Home = () => {
+import Row from '../components/Row';
+const Home = ({heroImg,rowImg}) => {
 
   return (
-    <div className="flex flex-col min-h-screen md:relative   bg-black text-white">
+    <div className="flex flex-col min-h-screen md:relative gap-3  bg-[#141414] text-white">
   <NavBar></NavBar>
-  <HeroSection ></HeroSection>
+  <HeroSection 
+  img={heroImg}
+  ></HeroSection>
+  <div className='flex flex-col gap-60'>
+  <Row
+  rowImg={rowImg}
+  rowTitle={"Tendencias"}></Row>
+    <Row
+  rowImg={rowImg}
+  rowTitle={"Tendencias"}></Row>
+  <Row
+  rowImg={rowImg}
+  rowTitle={"Tendencias"}></Row>
+    <Row
+  rowImg={rowImg}
+  rowTitle={"Tendencias"}></Row>
+    </div>
     </div>
   );
 };

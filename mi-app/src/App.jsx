@@ -1,5 +1,5 @@
-const API_URL = "http://www.omdbapi.com/";
 
+import hero from "./assets/images/hero.webp"
 import Home from './pages/Home'
 import MovieCard from './components/MovieCard';
 import { useState, useEffect } from 'react'
@@ -57,7 +57,17 @@ setNotFound(false)
   }
  }
 console.log("favoritos",favorites)
- 
+ const fetchCards =async (genre) =>{
+try {
+  setLoading(true)
+const res=await fetch (`${API_URL}?apikey=${import.meta.env.VITE_API_KEY}&s=${title}`)
+const data =await res.json()
+setRow(data.Search)
+}
+catch{
+
+}
+ }
 const  fetchMovies = async (title)=> {
   
   try {
@@ -142,6 +152,8 @@ return (
         noFavorites={noFavorites}
         favorites={favorites}
         toggleFavorite={toggleFavorite}
+        heroImg={hero}
+        rowImg={hero}
 
     /> }/>
         <Route path="/details/:movieId" element={<Details

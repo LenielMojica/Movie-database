@@ -4,8 +4,11 @@
     --font-sans:'Roboto', sans-serif;
     --color-netflix: #E50914;
     --color-red-hover:#F6121D;
-    --color-text-gray:#B3B3B3;
+    --color-gray:#B3B3B3;
     --color-white:#F5F5F1;
 
 
+}
+body{
+    background-color: #2a272c;
 }

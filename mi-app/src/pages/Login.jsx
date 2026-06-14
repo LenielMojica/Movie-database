@@ -26,7 +26,7 @@ const Login =({})=>{
      <Link to={"/home/"} className="w-full block">
      <Button
        text={"Sign in"}
-       style={" hover:bg-red-hover bg-netflix cursor-pointer w-full px-3 py-2 rounded  font-semibold text-white text-center"}
+       style={" hover:bg-red-hover bg-netflix cursor-pointer w-full px-3 py-2 rounded  font-semibold text-white "}
         >
 
         </Button></Link>     
