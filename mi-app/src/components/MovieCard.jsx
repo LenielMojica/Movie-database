@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import hero from "../assets/images/hero.webp"
 const MovieCard = ({ id, img, title }) => {
   return (
-    <div className="w-70 shrink-0 cursor-pointer rounded overflow-hidden transition hover:scale-150">
+    <div className="w-70 shrink-0 cursor-pointer rounded overflow-hidden transition hover:scale-110">
      <img src={img} className="w-full aspect-video object-cover" />
 
     </div>

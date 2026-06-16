@@ -4,27 +4,90 @@ import NavBar from '../components/NavBar';
 import HeroSection from '../components/HeroSection'
 import Row from '../components/Row';
 const Home = ({heroImg,rowImg}) => {
+  const [rowTitle, setTitle]= useState([])
+const END_POINTS ={
+    Trending:"/trending/movie/week",
+    Popular:"/movie/popular",
+    TopRated:"/movie/top_rated"   
+}
+
 
   return (
-    <div className="flex flex-col min-h-screen md:relative gap-3  bg-[#141414] text-white">
+    <div className="flex flex-col min-h-screen md:relative    text-white"
+   >
   <NavBar></NavBar>
   <HeroSection 
   img={heroImg}
   ></HeroSection>
-  <div className='flex flex-col gap-60'>
+  <div className='flex flex-col gap-10'>
   <Row
-  rowImg={rowImg}
+ 
+  rowTitle={"Tendencias"}
+  endpoint={END_POINTS.Trending}></Row>
+    <Row
+ 
+  rowTitle={"Populares"}
+  endpoint={END_POINTS.Popular}></Row>
+  <Row
+
   rowTitle={"Tendencias"}></Row>
     <Row
-  rowImg={rowImg}
+
   rowTitle={"Tendencias"}></Row>
   <Row
-  rowImg={rowImg}
+
+  rowTitle={"Tendencias"}></Row><Row
+
+  rowTitle={"Tendencias"}></Row><Row
+
+  rowTitle={"Tendencias"}></Row><Row
+ 
+  rowTitle={"Tendencias"}></Row><Row
+ 
+  rowTitle={"Tendencias"}></Row><Row
+ 
+  rowTitle={"Tendencias"}></Row><Row
+
+  rowTitle={"Tendencias"}></Row><Row
+
+  rowTitle={"Tendencias"}></Row><Row
+
+  rowTitle={"Tendencias"}></Row><Row
+ rowTitle={"Tendencias"}></Row><Row
+
+  rowTitle={"Tendencias"}></Row><Row
+ 
+  rowTitle={"Tendencias"}></Row><Row
+
   rowTitle={"Tendencias"}></Row>
-    <Row
-  rowImg={rowImg}
+   <Row
+ 
+  rowTitle={"Tendencias"}></Row><Row
+  rowTitle={"Tendencias"}></Row><Row
+rowTitle={"Tendencias"}></Row><Row
+
+  rowTitle={"Tendencias"}></Row><Row
+ 
+  rowTitle={"Tendencias"}></Row><Row
+
+  rowTitle={"Tendencias"}></Row><Row
+ 
+  rowTitle={"Tendencias"}></Row><Row
+
+  rowTitle={"Tendencias"}></Row><Row
+
+  rowTitle={"Tendencias"}></Row><Row
+
+  rowTitle={"Tendencias"}></Row><Row
+
+  rowTitle={"Tendencias"}></Row><Row
+
+  rowTitle={"Tendencias"}></Row><Row
+
+  rowTitle={"Tendencias"}></Row><Row
+
   rowTitle={"Tendencias"}></Row>
-    </div>
+   </div>
     </div>
   );
 };
