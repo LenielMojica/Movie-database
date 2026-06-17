@@ -1,7 +1,7 @@
-const Button =({text,style,icon,deploy})=>{
+const Button =({text,style,icon,onClick})=>{
 return (
     <button className={style}
-    onClick={deploy}
+    onClick={onClick}
     > <p className="flex justify-center gap-2 "> {icon}  {text}</p></button>
 )
 }

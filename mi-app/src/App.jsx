@@ -141,17 +141,7 @@ return (
        
         <Route path="/" element={<Login></Login>} />
         <Route path="/home" element ={<Home 
-        view={view}
-        onBuscar={fetchMovies}
-        onShowFav={getFavorite}
-        onShowAll={getAll}
-        onClearList={clearList}
-        theresFavorites={favorites.length>0}
-        theresSearch={movies.length>0}
-        lista={lista}
-        noFavorites={noFavorites}
-        favorites={favorites}
-        toggleFavorite={toggleFavorite}
+        
         heroImg={hero}
         rowImg={hero}
 

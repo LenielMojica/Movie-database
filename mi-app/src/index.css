@@ -12,3 +12,10 @@
 body{
     background-color: #2a272c;
 }
+
+@utility scrollbar-hide {
+  scrollbar-width: none;          /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;                /* Chrome/Safari/Edge */
+  }
+}

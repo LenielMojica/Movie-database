@@ -4,89 +4,35 @@ import NavBar from '../components/NavBar';
 import HeroSection from '../components/HeroSection'
 import Row from '../components/Row';
 const Home = ({heroImg,rowImg}) => {
-  const [rowTitle, setTitle]= useState([])
+
 const END_POINTS ={
     Trending:"/trending/movie/week",
     Popular:"/movie/popular",
-    TopRated:"/movie/top_rated"   
+    TopRated:"/movie/top_rated",  
+    Discover: "/discover/movie"
 }
+
+const endPointsArr= Object.entries(END_POINTS)
+
+const randomEndpoint=endPointsArr[Math.floor(Math.random() * endPointsArr.length)]
 
 
   return (
-    <div className="flex flex-col min-h-screen md:relative    text-white"
+    <div className="flex flex-col min-h-screen md:relative bg-[#141414]   text-white"
    >
   <NavBar></NavBar>
   <HeroSection 
   img={heroImg}
   ></HeroSection>
   <div className='flex flex-col gap-10'>
-  <Row
- 
-  rowTitle={"Tendencias"}
-  endpoint={END_POINTS.Trending}></Row>
-    <Row
- 
-  rowTitle={"Populares"}
-  endpoint={END_POINTS.Popular}></Row>
-  <Row
+  {endPointsArr.map(([title,endpoint])=>(
+<Row
+ key={endpoint}
+  rowTitle={title}
+  endpoint={endpoint}/>
+  ))}
+   
 
-  rowTitle={"Tendencias"}></Row>
-    <Row
-
-  rowTitle={"Tendencias"}></Row>
-  <Row
-
-  rowTitle={"Tendencias"}></Row><Row
-
-  rowTitle={"Tendencias"}></Row><Row
-
-  rowTitle={"Tendencias"}></Row><Row
- 
-  rowTitle={"Tendencias"}></Row><Row
- 
-  rowTitle={"Tendencias"}></Row><Row
- 
-  rowTitle={"Tendencias"}></Row><Row
-
-  rowTitle={"Tendencias"}></Row><Row
-
-  rowTitle={"Tendencias"}></Row><Row
-
-  rowTitle={"Tendencias"}></Row><Row
- rowTitle={"Tendencias"}></Row><Row
-
-  rowTitle={"Tendencias"}></Row><Row
- 
-  rowTitle={"Tendencias"}></Row><Row
-
-  rowTitle={"Tendencias"}></Row>
-   <Row
- 
-  rowTitle={"Tendencias"}></Row><Row
-  rowTitle={"Tendencias"}></Row><Row
-rowTitle={"Tendencias"}></Row><Row
-
-  rowTitle={"Tendencias"}></Row><Row
- 
-  rowTitle={"Tendencias"}></Row><Row
-
-  rowTitle={"Tendencias"}></Row><Row
- 
-  rowTitle={"Tendencias"}></Row><Row
-
-  rowTitle={"Tendencias"}></Row><Row
-
-  rowTitle={"Tendencias"}></Row><Row
-
-  rowTitle={"Tendencias"}></Row><Row
-
-  rowTitle={"Tendencias"}></Row><Row
-
-  rowTitle={"Tendencias"}></Row><Row
-
-  rowTitle={"Tendencias"}></Row><Row
-
-  rowTitle={"Tendencias"}></Row>
    </div>
     </div>
   );

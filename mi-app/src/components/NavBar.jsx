@@ -2,17 +2,31 @@ import NavLinks from "./NavLinks"
 import Button from "./Button"
 import { useState } from "react"
 import logo from "../assets/images/logo.svg" 
-
-import {Search, Bell,ChevronDown, ChevronUp} from "lucide-react"
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import DeployableMenu from "./DeployableMenu"
+import {Search, Bell,ChevronDown, ChevronUp, Form} from "lucide-react"
 import avatar from "../assets/images/Avatar.jpg"
 
 const NavBar=({})=>{
 
-const [isUp,setIsUp]= useState(true)
- 
+const [exploreOpen,setExploreOpen]= useState(true)
+ const [avatarOpen,setAvatarOpen]= useState(true)
+ const [inputOpen,setInputOpen]= useState(false)
+  const [input,setInput]= useState("")
+  const handleInputChange = (e) => { setInput(e.target.value); }
+ const toggleInput =()=>{
+if (inputOpen || !inputOpen) {
+  setInputOpen(!inputOpen)
+}
+ }
  const toggleMenu =()=>{
-  if (isUp|| !isUp){
-    setIsUp(!isUp)
+  if (exploreOpen|| !exploreOpen ){
+    setExploreOpen(!exploreOpen)
+  }
+ }
+ const toggleAvatar=()=>{
+  if (avatarOpen|| !avatarOpen ){
+    setAvatarOpen(!avatarOpen)
   }
  }
     
@@ -22,43 +36,55 @@ const [isUp,setIsUp]= useState(true)
             <nav className=" flex  flex-row sticky h-15 justify-between w-full p-5 gap-4 md:sticky top-0  z-20 "
             style={{background:"linear-gradient(to bottom, #141410 99%, transparent 100%)"}} >
  <div className="flex flex-row  items-center gap-6  ">
-               <img src={logo} className="h-7 px-10 cursor-pointer" alt="" />
+         <Link to="/home">      <img src={logo} className="h-7 px-10 cursor-pointer" alt="" /></Link>
                <div className=" flex md:hidden relative group">
+             
                <Button
                text={"Explore"}
                style={"cursor-pointer "}
-               deploy={toggleMenu}
-          
-             
-               ></Button><ChevronDown className={`transition-transform duration-200 ${isUp ? "" : "rotate-180"}`}
+               onClick={toggleMenu}
+          icon={<ChevronDown className={`transition-transform duration-200 ${exploreOpen ? "" : "rotate-180"}`}
 
         
-               />
+               />}
              
-                <div className={`absolute mt-2 top-full left-1/2 -translate-x-1/2 flex-col transition duration-400 ${isUp ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"}`}
->
-               {console.log(isUp)}
-             <div className=""></div> <div className=" pt-6 border-b border-white flex justify-center"></div>
-            <div className="bg-black/95">  <NavLinks
+               ></Button>
+             
+             <DeployableMenu
+           isUp={exploreOpen}
+             ><NavLinks
+             links={["Home", "Shows", "Movies", "Games", "New & popular", "My List"]}
               style={"text-white whitespace-nowrap  cursor-pointer text-sm       rounded"}
               containerStyle={"hover:bg-gray/10 text-center w-full px-20 transition-colors duration-400  py-3 cursor-pointer"}
               ></NavLinks>
-</div>
-               </div>
+       
+              </DeployableMenu>
                </div>
               
              <div className="hidden md:flex  md:flex-row items-center gap-6"> 
               <NavLinks
               style={"text-white cursor-pointer text-sm   hover:text-gray transition-colors duration-300 hover:text-black rounded"}
+              links={["Home", "Shows", "Movies", "Games", "New & popular", "My List"]}
               ></NavLinks>
               </div>
                  </div>
             <div className="flex flex-row items-center gap-4    ">
-                  <Search className="cursor-pointer hover:text-gray hover:text-black rounded "></Search>
+                 <div className="relative">
+                  <Button
+                   icon={<Search></Search>}
+                   onClick={toggleInput}
+                   style={!inputOpen ? "cursor-pointer hover:text-gray  rounded  ":"cursor-pointer hover:text-gray  rounded  absolute left-1 top-1/2 -translate-y-1/2"}></Button>
+                 <input className={!inputOpen ? "w-0 transition-all duration-1000":"flex transition-all duration-1000 w-64 border border-white pl-8 py-2 "}type="text" 
+                 placeholder="Titulos,Personas, generos"
+                 value={input} 
+                 onChange={handleInputChange} />
+                 
+                 </div>
                  <div className="relative">
   <Bell className="cursor-pointer" />
   <span className="absolute -top-1 -right-1 bg-red-600 text-xs rounded-full px-1.5">3</span>
 </div>
+ 
                     <Button
               text={"Kids"}
               style={"text-white cursor-pointer text-sm   hover:text-gray hover:text-black rounded"}
@@ -66,14 +92,34 @@ const [isUp,setIsUp]= useState(true)
 
 
               </Button>
-              <div className="flex cursor-pointer">
+              <div className="flex relative ">
           
-           <img src={avatar} className="h-8 rounded-sm " alt="" />
-               <ChevronDown
-        
-               />
-              </div>               
-            </div>
+       <img src={avatar} className="h-8 rounded-sm cursor-pointer" alt="" />
+           <Button
+           icon={ <ChevronDown className={`transition-transform duration-200 ${avatarOpen ? "" : "rotate-180"}`}
+/>}
+           onClick={toggleAvatar}
+           style={"cursor-pointer"}></Button>
+           <DeployableMenu
+          
+             isUp={avatarOpen}
+             >
+  
+ <Link to={"/"}> <NavLinks
+               links={["Cerrar sesión"]}
+               style={"cursor-pointer"}
+               ></NavLinks></Link>
+        <NavLinks
+               links={[ "Ayuda"]}
+               style={"cursor-pointer"}
+               ></NavLinks>
+             </DeployableMenu>
+         
+
+</div>
+               </div>
+                         
+    
             </nav>
 
     )
