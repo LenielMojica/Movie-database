@@ -28,7 +28,7 @@ onClick={()=>{rowRef.current.scrollBy({ left: -1500, behavior: "smooth" })}}
 
 ></Button>
 <h1 className=" font-bold text-2xl">{rowTitle}</h1>
-<div ref={rowRef} className="flex gap-2 scrollbar-hide py-10  overflow-x-auto rounded-xl">
+<div ref={rowRef} className="flex gap-2 scrollbar-hide py-15  overflow-x-auto rounded-xl">
 
     {items.map((i, index)=> (<MovieCard
 img={`https://image.tmdb.org/t/p/w500${i.backdrop_path}`}
@@ -38,7 +38,9 @@ origin={index===0?"origin-left":index===items.length-1? "origin-right" :"origin-
 
 >
 
-</MovieCard>))}
+</MovieCard>
+
+))}
 
 
 </div>

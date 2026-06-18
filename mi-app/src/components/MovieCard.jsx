@@ -1,10 +1,39 @@
 import { Link } from 'react-router-dom';
 import hero from "../assets/images/hero.webp"
+import { Play, Plus,ThumbsUp, ChevronDown } from 'lucide-react';
+import Button from './Button';
 const MovieCard = ({ id, img, title,origin }) => {
   return (
-    <div className={`w-70 shrink-0 cursor-pointer rounded-xl hover:shadow-xl shadow-black overflow-hidden transition hover:scale-150 ${origin}` }  >
+   <div className='group'>
+   <div className={` group-hove:shadow-black  transition hover:scale-110 ${origin}`}> <div className={`w-70 relative  shrink-0 cursor-pointer rounded-xl ` }  >
      <img src={img} className="w-full aspect-video object-cover" />
 
+    </div>
+    <div className=' flex flex-col justify-between opacity-0 group-hover:opacity-100 shadow-white rounded-b-lg bg-[#181818]'> 
+  <div className='flex absolute top-full justify-between'>
+   <div className='flex gap-2'> <Button style={"cursor-pointer rounded-full  p-1  bg-white text-black hover:bg-gray"}
+    icon={<Play />}
+    ></Button>
+      <Button style={"cursor-pointer rounded-full border border-gray-400 p-1  bg-[#181818] text-white"}
+    icon={<Plus/>}
+    ></Button>
+      <Button style={"cursor-pointer rounded-full border border-gray-400 p-1  bg-[#181818] text-white"}
+    icon={<ThumbsUp/>}
+    ></Button>
+    </div>
+<div>    <Button
+style={"cursor-pointer flex-end rounded-full border border-gray-400 p-1  bg-[#181818] text-white"}
+icon={<ChevronDown></ChevronDown>}
+></Button></div>
+  </div>
+  <div>
+
+  </div>
+<div>
+
+</div>
+</div>
+    </div>
     </div>
   );
 };

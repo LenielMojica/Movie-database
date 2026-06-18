@@ -14,7 +14,8 @@ const [exploreOpen,setExploreOpen]= useState(true)
  const [inputOpen,setInputOpen]= useState(false)
   const [input,setInput]= useState("")
   const handleInputChange = (e) => { setInput(e.target.value); }
- const toggleInput =()=>{
+
+  const toggleInput =()=>{
 if (inputOpen || !inputOpen) {
   setInputOpen(!inputOpen)
 }
