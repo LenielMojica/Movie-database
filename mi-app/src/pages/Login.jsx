@@ -23,7 +23,7 @@ const Login =({})=>{
                         <input type="password" className="w-full px-4 py-3 rounded  text-white placeholder-zinc-400 focus:outline-none ring-1 ring-zinc-400  focus:ring-red-600" placeholder="Password" />
       
 
-     <Link to={"/home/"} className="w-full block">
+     <Link to={"/home"} className="w-full block">
      <Button
        text={"Sign in"}
        style={" hover:bg-red-hover bg-netflix cursor-pointer w-full px-3 py-2 rounded  font-semibold text-white "}
@@ -43,8 +43,8 @@ const Login =({})=>{
         <p className="text-lg">Remember me</p></div>
          <p className="text-lg font-normal">New to netflix? <span className="font-bold ">Sign up now</span></p>
         <p>
-            This page is protected by Google reCAPTCHA to ensure you are not a bot
-    <p className="p-3">  <a href="" className="text-blue-500 underline"> Learn more</a></p>
+            This page is protected by Google reCAPTCHA to ensure you are not a bot</p>
+    <p className="p-3">  <a href="" className="text-blue-500 underline"> Learn more</a>
         </p>
         </div>
        

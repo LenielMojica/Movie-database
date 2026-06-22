@@ -1,19 +1,21 @@
 import NavLinks from "./NavLinks"
 import Button from "./Button"
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import logo from "../assets/images/logo.svg" 
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import DeployableMenu from "./DeployableMenu"
 import {Search, Bell,ChevronDown, ChevronUp, Form} from "lucide-react"
 import avatar from "../assets/images/Avatar.jpg"
+const API_URL = "https://api.themoviedb.org/3";
 
-const NavBar=({})=>{
-
+const NavBar=({value, onSearch})=>{
+const inputRef=useRef(null)
 const [exploreOpen,setExploreOpen]= useState(true)
  const [avatarOpen,setAvatarOpen]= useState(true)
  const [inputOpen,setInputOpen]= useState(false)
-  const [input,setInput]= useState("")
-  const handleInputChange = (e) => { setInput(e.target.value); }
+ 
+   const [search,setSearch]= useState(false)
+ 
 
   const toggleInput =()=>{
 if (inputOpen || !inputOpen) {
@@ -30,6 +32,11 @@ if (inputOpen || !inputOpen) {
     setAvatarOpen(!avatarOpen)
   }
  }
+ useEffect(() => {
+  if (inputOpen=>prev) {
+    inputRef.current.focus()
+  }
+}, [inputOpen])
     
     return (
     
@@ -37,7 +44,7 @@ if (inputOpen || !inputOpen) {
             <nav className=" flex  flex-row sticky h-15 justify-between w-full p-5 gap-4 md:sticky top-0  z-20 "
             style={{background:"linear-gradient(to bottom, #141410 99%, transparent 100%)"}} >
  <div className="flex flex-row  items-center gap-6  ">
-         <Link to="/home">      <img src={logo} className="h-7 px-10 cursor-pointer" alt="" /></Link>
+         <Link to="/home/:id">      <img src={logo} className="h-7 px-10 cursor-pointer" alt="" /></Link>
                <div className=" flex md:hidden relative group">
              
                <Button
@@ -77,8 +84,9 @@ if (inputOpen || !inputOpen) {
                    style={!inputOpen ? "cursor-pointer hover:text-gray  rounded  ":"cursor-pointer hover:text-gray  rounded  absolute left-1 top-1/2 -translate-y-1/2"}></Button>
                  <input className={!inputOpen ? "w-0 transition-all duration-1000":"flex transition-all duration-1000 w-64 border border-white pl-8 py-2 "}type="text" 
                  placeholder="Titulos,Personas, generos"
-                 value={input} 
-                 onChange={handleInputChange} />
+                 value={value} 
+                 ref={inputRef}
+                 onChange={(e)=>onSearch(e.target.value)} />
                  
                  </div>
                  <div className="relative">

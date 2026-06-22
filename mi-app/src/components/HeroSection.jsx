@@ -10,9 +10,12 @@ const HeroSection = ({})=>{
     const [mainColor, setMainColor]=useState("#FFFFFF")
     const fac= new FastAverageColor()
 const [movie, setMovie]=useState(null)
-  
+  const [loading, setLoading] =useState(true)
+  const [error,setError] =useState(false)
    useEffect(()=>{
      const fetchHero= async()=>{
+        try {
+            setLoading(true)
 const res= await fetch(`${API_URL}/trending/movie/week?api_key=${import.meta.env.VITE_API_KEY}`)
 
 
@@ -21,7 +24,13 @@ const data =await res.json()
 
 setMovie(data.results[Math.floor(Math.random() * data.results.length)]
 )
-
+        }
+        catch (e){
+            setError(true)
+        }
+        finally{
+            setLoading(false)
+        }
 
 
 
@@ -40,6 +49,13 @@ useEffect(()=>{
     getColor()
 },[movie])
    
+if (loading){
+  return  <p>Loading...</p>
+}
+if (error){
+    return <p>Algo salio mal :( </p>
+}
+
     return (
    <div style={{ background: `linear-gradient(to bottom, ${mainColor} 0%, transparent 40%)` }}
 ><section className="flex shadow-2xl shadow-black/50 items-end h-[85vh] bg-cover rounded-xl mt-2 mr-10 ml-10 bg-center relative" 

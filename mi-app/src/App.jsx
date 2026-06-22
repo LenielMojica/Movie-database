@@ -6,6 +6,8 @@ import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Details from './pages/Details'
 import Login from './pages/Login'
+import { Search } from "lucide-react";
+import ErrorBoundary from "./components/ErrorBoundaryTree";
 const App = () => {
        const [movies, setMovies]= useState([])
        const [favorites, setFavorites]= useState([])
@@ -116,7 +118,11 @@ useEffect(() => {
     setTimeout(() => setView("All"), 3000)
   }
 }, [noFavorites])
+
+
+
 if (loading) return (
+  <ErrorBoundary fallback={<p>Fallo</p>}>
 <div>  <Home 
     onBuscar={fetchMovies} 
     onShowFav={getFavorite}  
@@ -129,13 +135,13 @@ if (loading) return (
     <div className="min-h-screen bg-gray-950 text-white flex items-center justify-center">
       <p className="text-xl animate-pulse">Loading search</p>
     </div>
-    </div>
+    </div></ErrorBoundary>
   )
 return (
   
   <div>
-     
-     
+    
+  <ErrorBoundary fallback={<p>Fallo</p>}>   
      <Routes>
 
        
@@ -144,8 +150,14 @@ return (
         
         heroImg={hero}
         rowImg={hero}
+     
 
     /> }/>
+    <Route path="/search/:?q" element ={<Search 
+     
+
+    /> }/>
+
         <Route path="/details/:movieId" element={<Details
 
 
@@ -153,11 +165,13 @@ return (
        
       </Routes>
 
-    
+    </ErrorBoundary>  
     
    
   </div>
+  
 )
+
 
 
 }
