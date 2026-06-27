@@ -4,17 +4,19 @@ import IconButton from './IconButton';
 const CardPanel=({})=>{
     return (
     <div className='flex '>
-    <div className=' flex  px-3 flex-col absolute top-full left-0 right-0 justify-between opacity-0 group-hover:opacity-100 shadow-white rounded-b-lg bg-[#181818]'> 
+    <div className=' hidden  px-3 flex-col absolute top-full left-0 right-0 justify-between  group-hover:flex shadow-white rounded-b-lg bg-[#181818]'> 
   <div className='flex w-full  justify-between cursor-pointer'>
    <div className='flex gap-2 py-5 '>
      
  <IconButton
  icon={<Play size={15}/>}
  tooltip={"Play"}
+ style={"cursor-pointer rounded-full  p-2 hover:bg-white/90 bg-white text-black"}
  />
     <div className='group/plus relative'>     <IconButton
  icon={<Plus size={15}/>}
   tooltip={"Add to my list"}
+  style={"cursor-pointer rounded-full border border-gray-400 p-2 hover:bg-white/10 bg-[#181818] text-white"}
  />
      
 
@@ -24,6 +26,7 @@ const CardPanel=({})=>{
     <div className='group/thumbsup relative'>   <IconButton
  icon={<ThumbsUp size={15}/>}
   tooltip={"Like"}
+  style={"cursor-pointer rounded-full border border-gray-400 p-2 hover:bg-white/10 bg-[#181818] text-white"}
  />
      
   
@@ -33,7 +36,8 @@ const CardPanel=({})=>{
 <div className='py-5'>  
     <div className='relative group/chev'> <IconButton
  icon={<ChevronDown size={15}/>}
-  tooltip={"Info"}/>
+  tooltip={"Info"} style={"cursor-pointer rounded-full border border-gray-400 p-2 hover:bg-white/10 bg-[#181818] text-white"}/>
+  
      </div>
 </div>
   </div>

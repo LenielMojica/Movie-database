@@ -41,10 +41,10 @@ if (inputOpen || !inputOpen) {
     return (
     
   
-            <nav className=" flex  flex-row sticky h-15 justify-between w-full p-5 gap-4 md:sticky top-0  z-20 "
+            <nav className=" flex  flex-row sticky h-15 justify-between w-full p-5 gap-4 md:sticky top-0  z-40 "
             style={{background:"linear-gradient(to bottom, #141410 99%, transparent 100%)"}} >
  <div className="flex flex-row  items-center gap-6  ">
-         <Link to="/home/:id">      <img src={logo} className="h-7 px-10 cursor-pointer" alt="" /></Link>
+         <Link to="/home">      <img src={logo} className="h-7 px-10 cursor-pointer" alt="" /></Link>
                <div className=" flex md:hidden relative group">
              
                <Button
@@ -82,7 +82,7 @@ if (inputOpen || !inputOpen) {
                    icon={<Search></Search>}
                    onClick={toggleInput}
                    style={!inputOpen ? "cursor-pointer hover:text-gray  rounded  ":"cursor-pointer hover:text-gray  rounded  absolute left-1 top-1/2 -translate-y-1/2"}></Button>
-                 <input className={!inputOpen ? "w-0 transition-all duration-1000":"flex transition-all duration-1000 w-64 border border-white pl-8 py-2 "}type="text" 
+                 <input className={!inputOpen ? "w-0 transition-all duration-1000":"flex transition-all duration-1000 w-25 md:w-50 lg:w-64 border border-white pl-8 py-2 "}type="text" 
                  placeholder="Titulos,Personas, generos"
                  value={value} 
                  ref={inputRef}

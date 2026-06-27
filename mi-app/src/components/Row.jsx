@@ -2,15 +2,18 @@ import { useState, useEffect,useRef } from "react"
 import MovieCard from "./MovieCard"
 import { ChevronRight,ChevronLeft } from "lucide-react";
 import Button from "./Button";
+import { getList,getTrailer, withTrailerKeys } from "./services/tmdb";
 const API_URL = "https://api.themoviedb.org/3";
 
 
 const Row =({rowTitle, endpoint})=>{
     const rowRef=useRef(null)
+    const [videos,setVideos]=useState([])
     const [offset, setOffSet]= useState(0)
     const [items, setItems]=useState([])
     const [loading, setLoading]= useState(true)
  const [error, setError]= useState(false)
+ const [trailerKey,setTrailerKey]=useState(null)
     const move = (distance) => {
   setOffSet(prev => {
     const min = -(rowRef.current.scrollWidth - rowRef.current.clientWidth)
@@ -25,13 +28,13 @@ const Row =({rowTitle, endpoint})=>{
      const  fetchRow = async()=>{
      try{
             setLoading(true)  
-            const res =await fetch(`${API_URL}${endpoint}?api_key=${import.meta.env.VITE_API_KEY}`)
-    const data =await res.json()
-    setItems(data.results)
+
+       const list = await getList(endpoint)
+         const listWithTrailer =await withTrailerKeys(list)
+         setItems(listWithTrailer)
+   
+    
 }
-
-        
-
         catch (e){
             setError(true)
             console.log(e)
@@ -42,7 +45,7 @@ const Row =({rowTitle, endpoint})=>{
     }
 fetchRow()
 },[endpoint])
-
+  
 if (loading){
     return <p>Cargando</p>
 }
@@ -73,11 +76,12 @@ ref={rowRef} className="flex gap-2 py-5 transition-transform duration-800 ease-o
 img={`https://image.tmdb.org/t/p/w500${i.backdrop_path}`}
 title={i.title}
 key={i.id}
-origin={index===0?"origin-left":index===items.length-1? "origin-right" :"origin-center"}
-
+origin={index===0?"origin-left":index===items.length-1? "origin-right" :"origin-up"}
+videoKey={i.key}
 >
 
 </MovieCard>
+
 
 ))}
 

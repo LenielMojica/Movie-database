@@ -4,8 +4,8 @@ const NavLinks =({style, links,text,containerStyle, children})=>{
 
     return(
         links.map((l)=>(
-<div className={containerStyle}><Button key={l} style={style} text={l}
- text={l}
+<div className={containerStyle}><Button  style={style} text={l}
+
  
  ></Button>
  </div>

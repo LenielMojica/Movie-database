@@ -6,10 +6,13 @@ import ResultsGrid from '../components/ResultsGrid';
 import GenreBanner from '../components/GenreBanner';
 import { useSearchParams, useNavigate } from "react-router-dom";
 import ErrorCard from '../components/ErrorCard';
-const Home = ({ heroImg}) => {
+import Footer from '../components/Footer';
+import { getList,withTrailerKeys } from '../components/services/tmdb';
+const Home = ({ heroImg, videoKey}) => {
     const API_URL = "https://api.themoviedb.org/3";
 
  const [input,setInput]= useState("")
+ const [isHovered, setIsHovered]=useState(false)
  const [items, setItems]= useState([])
 const END_POINTS ={
     "Trending":"/trending/movie/week",
@@ -27,9 +30,13 @@ const [searchParams, setSearchParams]=useSearchParams()
 const fetchSearch = async ()=>{
  if (q){
    try {
-    const res = await fetch(`${API_URL}/search/multi?api_key=${import.meta.env.VITE_API_KEY}&query=${q}`)
-const data = await res.json()
-setItems(data.results)
+     const list = await getList("/search/multi",q)
+     const soloPelis = list.filter(item => item.media_type === "movie")
+       
+     const listWithTrailer =await withTrailerKeys(soloPelis)
+            
+             setItems(listWithTrailer)
+
 
 }
 
@@ -55,8 +62,9 @@ const endPointsArr= Object.entries(END_POINTS)
 console.log(items)
 let content;
 if (!q){
-  content = <div> <HeroSection
+  content = <> <HeroSection
   img={heroImg}
+  isHovered={setIsHovered}
   ></HeroSection>
   <div className='flex flex-col gap-10'>
   {endPointsArr.map(([title,endpoint])=>(
@@ -66,7 +74,7 @@ if (!q){
   endpoint={endpoint}/>
   ))}
   </div>
-  </div>
+  </>
 }
 else if (loading){
   content=<p>Cargando...</p>
@@ -99,9 +107,11 @@ else if (items.length===0 ||error){
  }
 
 return (
-  <div className="flex flex-col min-h-screen md:relative bg-[#141414] text-white">
+  <div className="flex flex-col min-h-screen md:relative bg-[#141414] text-white ">
     <NavBar value={q ?? ""} onSearch={(text)=>setSearchParams({q:text})} />
     {content}
+
+    <Footer/>
   </div>
 )
 
