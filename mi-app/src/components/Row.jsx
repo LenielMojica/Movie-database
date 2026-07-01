@@ -2,11 +2,12 @@ import { useState, useEffect,useRef } from "react"
 import MovieCard from "./MovieCard"
 import { ChevronRight,ChevronLeft } from "lucide-react";
 import Button from "./Button";
-import { getList,getTrailer, withTrailerKeys } from "./services/tmdb";
+import { getList,getTrailer, withTrailerKeys,getGenres, getAll } from "../services/tmdb";
+import GridSkeleton from "./GridSkeleton";
 const API_URL = "https://api.themoviedb.org/3";
 
 
-const Row =({rowTitle, endpoint})=>{
+const Row =({rowTitle, endpoint,type})=>{
     const rowRef=useRef(null)
     const [videos,setVideos]=useState([])
     const [offset, setOffSet]= useState(0)
@@ -29,10 +30,11 @@ const Row =({rowTitle, endpoint})=>{
      try{
             setLoading(true)  
 
-       const list = await getList(endpoint)
-         const listWithTrailer =await withTrailerKeys(list)
-         setItems(listWithTrailer)
-   
+       
+         const items =await getAll(endpoint)
+         setItems(items)
+       
+
     
 }
         catch (e){
@@ -47,7 +49,9 @@ fetchRow()
 },[endpoint])
   
 if (loading){
-    return <p>Cargando</p>
+    return <GridSkeleton
+    count={5}
+    />
 }
   if (error){
     
@@ -72,18 +76,13 @@ onClick={()=>move(500)}
 style={{transform: `translateX(${offset}px)`}}
 ref={rowRef} className="flex gap-2 py-5 transition-transform duration-800 ease-out  rounded-xl">
 
-    {items.map((i, index)=> (<MovieCard
-img={`https://image.tmdb.org/t/p/w500${i.backdrop_path}`}
-title={i.title}
-key={i.id}
-origin={index===0?"origin-left":index===items.length-1? "origin-right" :"origin-up"}
-videoKey={i.key}
->
-
-</MovieCard>
-
-
-))}
+    {items.map((i, index)=> (
+      <MovieCard
+        key={i.id}
+        movie={i}
+        origin={index === 0 ? "origin-left" : index === items.length - 1 ? "origin-right" : "origin-up"}
+      />
+    ))}
 
 
 </div>

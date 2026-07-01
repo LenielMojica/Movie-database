@@ -3,12 +3,14 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import {BrowserRouter} from 'react-router-dom'
+import MyListProvider from './components/MyListProvider.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  <MyListProvider><StrictMode>
     <BrowserRouter>
 
     <App />
     </BrowserRouter>
-  </StrictMode>,
+  </StrictMode>
+  </MyListProvider>,
 )

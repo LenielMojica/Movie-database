@@ -1,13 +1,18 @@
 import { useState } from "react"
 import Button from "./Button"
-const NavLinks =({style, links,text,containerStyle, children})=>{
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
+const NavLinks =({style,nav, links,text,containerStyle, children})=>{
 
     return(
+        
         links.map((l)=>(
-<div className={containerStyle}><Button  style={style} text={l}
+            
+<div className={containerStyle}
+key={l.to}
+><Link to={l.to}><Button   style={style} text={l.label}
 
  
- ></Button>
+ ></Button></Link>  
  </div>
         ))
  

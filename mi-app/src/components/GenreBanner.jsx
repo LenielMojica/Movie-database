@@ -12,9 +12,10 @@ const names = (list ?? []).map(id => genreMap[id]).filter(Boolean)   // list ya 
 useEffect (()=>{
    const fetchGenres = async ()=>{
      try {
-       const res = await fetch(`${API_URL}/genre/movie/list?api_key=${import.meta.env.VITE_API_KEY}&query=${search}`)
-   const data = await res.json()
-   setResult(data.genres)
+       const res = await fetch(`${API_URL}/genre/movie/list?api_key=${import.meta.env.VITE_API_KEY}`)
+   if (!res.ok) return  
+       const data = await res.json()
+  setResult(data.genres ?? [])
  
    }
    

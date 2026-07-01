@@ -1,10 +1,10 @@
 import { useState } from "react"
 
-const useHover=()=>{
+const useHover=({onEnter, onLeave}={})=>{
     const [isHovered,setIsHovered]= useState(false)
     const handlers={
-        onMouseEnter: ()=>setIsHovered(true),
-        onMouseLeave: ()=>setIsHovered(false),
+        onMouseEnter: ()=>{setIsHovered(true);onEnter?.()},
+        onMouseLeave: ()=>{setIsHovered(false);onLeave?.()}
     }
     return [isHovered,handlers]
 }
