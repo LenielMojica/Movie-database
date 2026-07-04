@@ -1,6 +1,24 @@
 const API_URL = "https://api.themoviedb.org/3";
 const API_KEY= import.meta.env.VITE_API_KEY;
 
+export const getDetails= async(id,mediaType)=>{
+  const url=(`${API_URL}/${mediaType}/${id}?api_key=${API_KEY}&append_to_response=videos,credits`)
+
+const res = await fetch(url);
+if (!res.ok) return []
+const data = await res.json();
+const trailer = data.videos.results.find(v => v.type==="Trailer"&& v.site === "YouTube")
+return {
+  ...data,
+  key: trailer?.key,
+  media_type: mediaType,                   
+  title: data.title ?? data.name,           
+  genres: data.genres.map(g => g.name),    
+}
+
+
+return data
+}
 export const getList= async(endpoint,q )=>{
 
         

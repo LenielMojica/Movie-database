@@ -5,6 +5,9 @@ export const SHOWS = {
 }
 export const MOVIES = {
   "Popular": { endpoint: "/movie/popular", type: "movie" },
+   "Trending":{endpoint: "/trending/movie/week", type:"movie"},
+   "Top rated":{endpoint:"/movie/top_rated",type:"movie"},
+   "Discover": {endpoint:"/discover/movie",type: "movie"},
  
 }
 
@@ -13,7 +16,8 @@ export const HOME ={
     "Trending":{endpoint: "/trending/movie/week", type:"movie"},
     "Popular":{endpoint:"/movie/popular", type:"movie"},
     "Top rated":{endpoint:"/movie/top_rated",type:"movie"},
+     "Top Rated Series": { endpoint: "/tv/top_rated", type: "tv" },
     "Discover": {endpoint:"/discover/movie",type: "movie"},
   "Popular Shows": { endpoint: "/tv/popular", type: "tv" },
-  "Top Rated Series": { endpoint: "/tv/top_rated", type: "tv" },
+ 
 }

@@ -11,7 +11,7 @@ const Teaser=({videoKey,mute,onReady })=> {
   src={`${YOUTUBE_URL}${videoKey}`}
   playing={true} 
   muted ={mute}            
-  loop
+  loop={false}
   controls={false}
   width="100%"
   height="100%"

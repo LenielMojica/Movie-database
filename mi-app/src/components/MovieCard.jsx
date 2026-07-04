@@ -1,15 +1,25 @@
 import CardPanel from './CardPanel';
 import useHover from '../hooks/useHover';
 import Teaser from './Teaser';
-
+import { useSearchParams } from 'react-router-dom';
 const MovieCard = ({ movie, origin = "", width = "w-70" }) => {
   const [isHovered, hoverHandlers] = useHover();
+  const [searchParams,setSearchParams]=useSearchParams()
+   const type = movie.media_type ?? (movie.first_air_date ? "tv" : "movie")
   const img = `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`;
+const onDetail = (id, type) => {
+  setSearchParams(prev => {
+    prev.set("item", id)
+    prev.set("type", type)
+    return prev
+  })
+}
 
   return (
     <div className='group relative hover:z-20' {...hoverHandlers}>
       <div className={`relative group/movie transition rounded-xl hover:drop-shadow-2xl hover:drop-shadow-black hover:scale-150 ${origin}`}>
-        <div className={`shrink-0 cursor-pointer ${width}`}>
+        <div className={`shrink-0 cursor-pointer ${width}`}
+        onClick={()=>onDetail(movie.id, type)}>
           {isHovered && movie.key &&
             <div className="absolute inset-0 z-0 overflow-hidden rounded-t-xl pointer-events-none">
               <Teaser videoKey={movie.key} mute={true} />

@@ -3,17 +3,25 @@ import Badge from './Badge';
 import { useContext } from 'react';
 import { MyListContext } from './MyListContext';
 import IconButton from './IconButton';
-
+import { useNavigate } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 const CardPanel = ({ movie }) => {
-  
+  const type = movie.media_type ?? (movie.first_air_date ? "tv" : "movie")
+const [searchParams,setSearchParams]=useSearchParams()
 const { toggleItem, myList } = useContext(MyListContext)
 const isAdded = myList.some(m => m.id === movie.id)
-
+const navigate=useNavigate()
   const genres = movie.genres ?? [];
   const age = movie.adult ? "18+" : "13+";
   const rating = movie.vote_average;
   const year = (movie.release_date ?? movie.first_air_date)?.slice(0, 4) ?? "?";
-
+const onDetail = (id, type) => {
+  setSearchParams(prev => {
+    prev.set("item", id)
+    prev.set("type", type)
+    return prev
+  })
+}
   return (
     <div className='flex '>
       <div className=' hidden  px-3 flex-col absolute top-full left-0 right-0 justify-between  group-hover/movie:flex shadow-white rounded-b-lg bg-[#181818]'>
@@ -29,7 +37,7 @@ const isAdded = myList.some(m => m.id === movie.id)
               <IconButton
                 icon={isAdded ? <Check size={15} /> : <Plus size={15} />}
                 tooltip={"Add to my list"}
-              style={`cursor-pointer rounded-full border p-2 transition-all duration-300 active:scale-75 ${
+              style={`cursor-pointer rounded-full border-2 hover:border-white p-2 transition-all duration-300 active:scale-75 ${
   isAdded
     ? "bg-white text-black scale-110 border-white"
     : "bg-[#181818] text-white border-gray-400 scale-100"
@@ -53,6 +61,7 @@ const isAdded = myList.some(m => m.id === movie.id)
             <div className='relative group/chev'>
               <IconButton
                 icon={<ChevronDown size={15} />}
+                onClick={()=>onDetail(movie.id,type )}
                 tooltip={"Info"} style={"cursor-pointer rounded-full border border-gray-400 p-2 hover:bg-white/10 bg-[#181818] text-white"} />
             </div>
           </div>

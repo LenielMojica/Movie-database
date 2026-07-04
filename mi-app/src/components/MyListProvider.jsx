@@ -12,7 +12,7 @@ const MyListProvider= ({children})=>{
   
 }
 
-     console.log(myList)}
+    }
     return (
     <MyListContext.Provider value={{myList,toggleItem}}>
         {children}

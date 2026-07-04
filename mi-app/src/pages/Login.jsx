@@ -10,7 +10,7 @@ const Login =({})=>{
     className="min-h-screen bg-cover bg-center bg-black/50">
     <div className="min-h-screen bg-black/60">
     <nav className="flex-col  p-10 fixed " >
-         <a href="#"><img src={logo} alt="logo" className="h-10"></img></a>
+         <a href="#"><img src={logo} alt="logo" className="h-5 -mt-4 md:h-10"></img></a>
    
     </nav>
 <div className="flex min-h-screen justify-center items-center text-white ">
