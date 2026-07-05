@@ -27,6 +27,10 @@ A responsive Netflix-inspired streaming UI built with **React** and the **TMDB A
 | Media | react-player |
 | Icons | lucide-react, react-icons |
 
+# Netflix-Style Movie App
+
+ **[Live Demo](https://movie-database-black-eight.vercel.app/)** · Built with React + TMDB
+
 ##  Getting Started
 
 ### Prerequisites
