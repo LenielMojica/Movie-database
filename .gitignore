@@ -3,3 +3,6 @@ mi-app.rar
 
 # Reference material (not part of the project)
 Netflix_UI_for_Web.png
+
+# Demo videos — embed via GitHub drag-drop instead of committing (keeps the repo small)
+screenshots/*.mp4

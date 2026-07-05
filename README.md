@@ -1,10 +1,24 @@
-#  Netflix-Style Movie App
+# Netflix-Style Movie App
 
 A responsive Netflix-inspired streaming UI built with **React** and the **TMDB API**. Browse trending movies and shows, watch trailers on hover, search the catalog, save titles to your list, and open a full detail modal — all with a Netflix-like look and feel.
 
 > The application lives in the [`mi-app/`](mi-app) directory.
 
-##  Features
+**[Live Demo](https://movie-database-black-eight.vercel.app/)** · Built with React + TMDB
+
+## Screenshots
+
+| Home / Hero | Category Rows |
+|:---:|:---:|
+| ![Home hero](screenshots/HeroSection.png) | ![Category rows](screenshots/Rows.png) |
+| **Detail Modal** | **Search** |
+| ![Detail modal](screenshots/DetailModal.png) | ![Search results](screenshots/Search.png) |
+
+## Demo videos
+
+> Short screen recordings of the app in action. To embed them: open this README on GitHub, click **Edit**, and drag the `.mp4` files from `screenshots/` (`HeroSectionVid.mp4`, `RowsVid.mp4`, `DetailModalVid.mp4`) into this section. GitHub hosts and embeds them as inline players.
+
+## Features
 
 - **Dynamic hero banner** — a random trending title with an autoplaying trailer on hover and an ambient background color sampled from the artwork (`fast-average-color`).
 - **Category rows** — horizontally scrollable carousels generated per category (Popular, Trending, Top Rated, etc.).
@@ -15,7 +29,7 @@ A responsive Netflix-inspired streaming UI built with **React** and the **TMDB A
 - **Loading skeletons** — composed from a reusable `SkeletonBox` (grid / row / hero / modal variants).
 - **Responsive navbar** — collapsible menus, animated search input, and a Netflix-style dark theme throughout.
 
-##  Tech Stack
+## Tech Stack
 
 | Area | Tools |
 |------|-------|
@@ -27,11 +41,7 @@ A responsive Netflix-inspired streaming UI built with **React** and the **TMDB A
 | Media | react-player |
 | Icons | lucide-react, react-icons |
 
-# Netflix-Style Movie App
-
- **[Live Demo](https://movie-database-black-eight.vercel.app/)** · Built with React + TMDB
-
-##  Getting Started
+## Getting Started
 
 ### Prerequisites
 - [Node.js](https://nodejs.org/) 18+
@@ -59,9 +69,9 @@ Create a `.env` file inside `mi-app/`:
 VITE_API_KEY=your_tmdb_api_key_here
 ```
 
+> Vite exposes only variables prefixed with `VITE_`, and they are embedded in the client bundle (i.e. publicly visible in the browser).
 
-
-##  Available Scripts
+## Available Scripts
 
 Run from inside `mi-app/`:
 
@@ -72,7 +82,13 @@ Run from inside `mi-app/`:
 | `npm run preview` | Preview the production build locally |
 | `npm run lint` | Run ESLint |
 
+## Deployment (Vercel)
 
-##  License
+1. Import the repository into Vercel.
+2. Set **Root Directory** to `mi-app`.
+3. Add the `VITE_API_KEY` environment variable in the project settings.
+4. A `mi-app/vercel.json` rewrite is included so client-side routes (`/home`, `/movies`, …) resolve correctly on direct visits and refreshes.
+
+## License
 
 This project is for educational and portfolio purposes. Movie data and images are provided by [TMDB](https://www.themoviedb.org/); this product uses the TMDB API but is not endorsed or certified by TMDB.
