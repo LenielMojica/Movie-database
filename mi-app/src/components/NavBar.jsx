@@ -43,11 +43,11 @@ const toggleInput = () => {
     return (
 
 
-            <nav className=" flex  flex-row sticky h-15 justify-between w-full p-5 gap-4 md:sticky top-0  z-40 "
+            <nav className=" flex  flex-row sticky h-15 justify-between w-full p-5 gap-10 md:sticky top-0  z-40 "
             style={{background:"linear-gradient(to bottom, #141410 99%, transparent 100%)"}} >
  <div className="flex flex-row  items-center gap-6  ">
-         <Link to="/home">      <img src={logo} onClick={()=>setInputOpen(false)} className="h-7 px-10 cursor-pointer" alt="" /></Link>
-               <div className=" flex md:hidden relative group">
+         <Link to="/home">      <img src={logo} onClick={()=>setInputOpen(false)} className="h-5 md:h-7  cursor-pointer" alt="" /></Link>
+               <div className=" flex justify-between md:hidden relative group">
 
                <Button
                text={"Explore"}
@@ -64,7 +64,11 @@ const toggleInput = () => {
            isUp={exploreOpen}
              ><NavLinks
 
-             links={["Home", "Shows", "Movies", "Games", "New & popular", "My List"]}
+             links={[
+              {label: "Home", to: "/home"},
+              {label: "Shows", to: "/shows"},
+              {label: "Movies", to: "/movies"},
+              {label: "My List", to: "/mylist"},]}
               style={"text-white whitespace-nowrap  cursor-pointer text-sm       rounded"}
               containerStyle={"hover:bg-gray/10 text-center w-full px-20 transition-colors duration-400  py-3 cursor-pointer"}
               ></NavLinks>

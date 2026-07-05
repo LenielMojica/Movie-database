@@ -94,16 +94,16 @@ mute={mute}
   <div className="absolute flex w-full justify-between top-4 left-4"><img src={logo} className="h-10 " alt="" />  </div>
 
   <div className="flex flex-col p-10 w-100 mb-30 gap-4 absolute z-20">
-     <h1 className="text-5xl font-bold ">{movie?.title ?? movie?.name}</h1>
- <div className="flex gap-8">
+     <h1 className="flex text-4xl md:text-5xl font-bold ">{movie?.title ?? movie?.name}</h1>
+ <div className="hidden md:flex  gap-8">
 <p>{Math.round(movie?.vote_average * 10)}% match</p>
 
 
 <p>{movie?.release_date?.slice(0, 4)}</p>
 
  </div>
- <p className="">{movie?.overview}</p>
-   <div className="flex gap-4">
+ <p className="hidden md:flex">{movie?.overview}</p>
+   <div className="flex -ml-5 gap-4">
 <div className=""><Button
 icon={<Play/>}
 text={"Play"}
@@ -113,7 +113,7 @@ style={"hover:bg-gray/90 transition-colors duration-300 cursor-pointer bg-white 
 onClick={()=>onDetail(movie.id,typeMedia)}
 icon={<Info/>}
 text={"Learn More"}
-style={"hover:bg-[#b3b3b3]/30 cursor-pointer transition-colors duration-300 bg-[#b3b3b3]/50 text-white rounded-3xl rounded px-6 py-2"}></Button>
+style={"hover:bg-[#b3b3b3]/30 cursor-pointer transition-colors duration-300 bg-[#b3b3b3]/50 text-white rounded-3xl rounded px-3 md:px-6 py-2"}></Button>
 </div> </div>
 </div>
 

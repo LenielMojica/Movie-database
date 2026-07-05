@@ -65,7 +65,7 @@ if (loading){
 
 
 <Button
-style={"opacity-0 group-hover/row:opacity-100 z-30 flex items-center justify-center hover:scale-200 p-0 transition duration-500  absolute cursor-pointer left-0 top-10 bottom-0"} icon={<ChevronLeft></ChevronLeft>}
+style={"opacity-100 md:opacity-0 md:group-hover/row:opacity-100 z-30 flex items-center justify-center hover:scale-200 p-0 transition duration-500  absolute cursor-pointer left-0 top-10 bottom-0"} icon={<ChevronLeft></ChevronLeft>}
 onClick={()=>move(500)}
 
 ></Button>
@@ -85,7 +85,7 @@ ref={rowRef} className="flex gap-2 py-5 transition-transform duration-800 ease-o
 
 </div>
 <Button
-style={"opacity-0 group-hover/row:opacity-100 hover:scale-200 transition duration-500 shadow-xl absolute cursor-pointer right-8 top-10 bottom-0"} icon={<ChevronRight></ChevronRight>}
+style={"opacity-100 md:opacity-0 md:group-hover/row:opacity-100 hover:scale-200 transition duration-500 shadow-xl absolute  cursor-pointer right-0 top-10 bottom-0"} icon={<ChevronRight></ChevronRight>}
 onClick={()=>move(-500)}
 ></Button>
 
