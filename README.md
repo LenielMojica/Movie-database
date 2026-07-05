@@ -16,7 +16,11 @@ A responsive Netflix-inspired streaming UI built with **React** and the **TMDB A
 
 ## Demo videos
 
-> Short screen recordings of the app in action. To embed them: open this README on GitHub, click **Edit**, and drag the `.mp4` files from `screenshots/` (`HeroSectionVid.mp4`, `RowsVid.mp4`, `DetailModalVid.mp4`) into this section. GitHub hosts and embeds them as inline players.
+
+
+
+
+
 
 ## Features
 
@@ -81,13 +85,6 @@ Run from inside `mi-app/`:
 | `npm run build` | Build for production into `dist/` |
 | `npm run preview` | Preview the production build locally |
 | `npm run lint` | Run ESLint |
-
-## Deployment (Vercel)
-
-1. Import the repository into Vercel.
-2. Set **Root Directory** to `mi-app`.
-3. Add the `VITE_API_KEY` environment variable in the project settings.
-4. A `mi-app/vercel.json` rewrite is included so client-side routes (`/home`, `/movies`, …) resolve correctly on direct visits and refreshes.
 
 ## License
 
