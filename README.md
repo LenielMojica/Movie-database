@@ -59,7 +59,7 @@ Create a `.env` file inside `mi-app/`:
 VITE_API_KEY=your_tmdb_api_key_here
 ```
 
-> Vite exposes only variables prefixed with `VITE_`, and they are embedded in the client bundle (i.e. publicly visible in the browser).
+
 
 ##  Available Scripts
 
@@ -72,12 +72,6 @@ Run from inside `mi-app/`:
 | `npm run preview` | Preview the production build locally |
 | `npm run lint` | Run ESLint |
 
-## ☁️ Deployment (Vercel)
-
-1. Import the repository into Vercel.
-2. Set **Root Directory** to `mi-app`.
-3. Add the `VITE_API_KEY` environment variable in the project settings.
-4. A `mi-app/vercel.json` rewrite is included so client-side routes (`/home`, `/movies`, …) resolve correctly on direct visits and refreshes.
 
 ##  License
 
