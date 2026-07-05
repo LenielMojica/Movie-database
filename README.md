@@ -14,10 +14,6 @@ A responsive Netflix-inspired streaming UI built with **React** and the **TMDB A
 | **Detail Modal** | **Search** |
 | ![Detail modal](screenshots/DetailModal.png) | ![Search results](screenshots/Search.png) |
 
-## Demo videos
-
-
-
 
 
 
