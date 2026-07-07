@@ -3,8 +3,35 @@ import { useState } from "react"
 import logo from "../assets/images/logo.svg" 
 import bg from "../assets/images/hero-img.jpg"
 import { Link } from "react-router-dom"
+import {login} from "../services/auth"
+import { useNavigate } from "react-router-dom"
 const Login =({})=>{
+  const [form, setForm]= useState({user:"",password:""})
+  const navigate=useNavigate()
+  const onLogin =(e)=>{
+   
+   
+   setForm(prev=>(
+    
+    {...prev,
+    [e.target.name]: e.target.value}))
+    
+    }
+    const handleSubmit= async(e)=>{
+e.preventDefault()
+
+try {
+  const data =await login(form,"http://localhost:3000/login")
+localStorage.setItem("token",data.token)
+  navigate("/home")
+
+}
+catch(e){
+    console.log(e)
+  }
+  }
   
+  console.log(form)
   return (
     <div style={{backgroundImage:`url(${bg})`}}
     className="min-h-screen bg-cover bg-center bg-black/50">
@@ -14,22 +41,38 @@ const Login =({})=>{
    
     </nav>
 <div className="flex min-h-screen justify-center items-center text-white ">
-    <form action="Sign in" className="w-full max-w-md bg-black/70 p-12 rounded">
+    <form action="Sign in" className="w-full max-w-md bg-black/70 p-12 rounded"
+    onSubmit={handleSubmit}
+    >
         <div className=" flex flex-col justify-center gap-4 items-center">
             <h1 className="font-bold text-3xl self-start    ">Sign in</h1>
      
-            <input type="text" className="w-full px-4 py-3 rounded  text-white placeholder-zinc-400 focus:outline-none ring-1 ring-zinc-400  focus:ring-red-600" placeholder="Email or mobile" />
+            <input 
+            type="text" 
+            className="w-full px-4 py-3 rounded  text-white placeholder-zinc-400 focus:outline-none ring-1 ring-zinc-400  focus:ring-red-600" 
+            placeholder="Email or mobile"
+            value={form.user}
+            onChange={onLogin}
+            name="user"
+            />
             
-                        <input type="password" className="w-full px-4 py-3 rounded  text-white placeholder-zinc-400 focus:outline-none ring-1 ring-zinc-400  focus:ring-red-600" placeholder="Password" />
+                        <input 
+                        type="password" 
+                        className="w-full px-4 py-3 rounded  text-white placeholder-zinc-400 focus:outline-none ring-1 ring-zinc-400  focus:ring-red-600" 
+                        placeholder="Password"
+                        value={form.password}
+                        onChange={onLogin}
+                          name="password"
+                        />
       
 
-     <Link to={"/home"} className="w-full block">
      <Button
+    
        text={"Sign in"}
        style={" hover:bg-red-hover bg-netflix cursor-pointer w-full px-3 py-2 rounded  font-semibold text-white "}
         >
 
-        </Button></Link>     
+        </Button> 
 <h2 className="text-[#b3b3b3]">OR</h2>
   <Button
        text={"Use a sign in code"}
@@ -55,4 +98,5 @@ const Login =({})=>{
     </div>
   )  
 }
+
 export default Login

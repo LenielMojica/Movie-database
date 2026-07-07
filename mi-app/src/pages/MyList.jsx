@@ -1,8 +1,19 @@
 import { useContext } from "react"
 import { MyListContext } from "../components/MyListContext"
 import ResultsGrid from "../components/ResultsGrid"
+import { useEffect } from "react"
+import { useState } from "react"
+import { goToMyList } from "../services/auth"
 
 const MyList = () => {
+  const [data, setData]=useState()
+  useEffect(()=>{
+    const load =async ()=>{
+      const res =await goToMyList("http://localhost:3000/myList")
+ setData(res)
+    }
+    load()
+ },[])
   const { myList } = useContext(MyListContext)
     if (myList.length === 0) {
     return (

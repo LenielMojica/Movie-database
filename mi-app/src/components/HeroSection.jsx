@@ -43,7 +43,7 @@ const [movie, setMovie]=useState(null)
 useEffect(()=>{
   if (!movie?.backdrop_path) return
   const getColor = async()=>{
-    const color= await fac.getColorAsync(`https://image.tmdb.org/t/p/w500${movie?.backdrop_path})`)
+    const color= await fac.getColorAsync(`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`)
     setMainColor(color.hex)
 
    }
@@ -94,7 +94,7 @@ mute={mute}
   <div className="absolute flex w-full justify-between top-4 left-4"><img src={logo} className="h-10 " alt="" />  </div>
 
   <div className="flex flex-col p-10 w-100 mb-30 gap-4 absolute z-20">
-     <h1 className="flex text-4xl md:text-5xl font-bold ">{movie?.title ?? movie?.name}</h1>
+     <h1 className="flex text-4 xl md:text-5xl font-bold ">{movie?.title ?? movie?.name}</h1>
  <div className="hidden md:flex  gap-8">
 <p>{Math.round(movie?.vote_average * 10)}% match</p>
 
