@@ -6,11 +6,12 @@ import {BrowserRouter} from 'react-router-dom'
 import MyListProvider from './components/MyListProvider.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <MyListProvider><StrictMode>
+  <StrictMode>
     <BrowserRouter>
-
+<MyListProvider>
     <App />
+    </MyListProvider>
     </BrowserRouter>
   </StrictMode>
-  </MyListProvider>,
+  
 )

@@ -7,6 +7,7 @@ import Layout from "./components/Layout"
 import MyList from "./pages/MyList";
 import { SHOWS, MOVIES } from "./services/categories"
 import Browse from "./components/Browse";
+import MyListProvider from './components/MyListProvider';
 
 const App = () => {
   return (
@@ -14,14 +15,16 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Login />} />
 
-        <Route element={<Layout />}>
+       <Route element={<Layout />}>
           <Route path="/home" element={<Home />} />
           <Route path="/search" element={<Search />} />
           <Route path="/shows" element={<Browse rows={SHOWS} heroType={"tv"} />} />
           <Route path="/movies" element={<Browse rows={MOVIES} heroType={"movie"} />} />
           <Route path="/mylist" element={<MyList />} />
-        </Route>
+          
+       </Route>
       </Routes>
+   
     </ErrorBoundary>
   )
 }

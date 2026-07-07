@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { MyListContext } from './MyListContext';
 import IconButton from './IconButton';
 import { useNavigate } from 'react-router-dom';
+
 import { useSearchParams } from 'react-router-dom';
 const CardPanel = ({ movie }) => {
   const type = movie.media_type ?? (movie.first_air_date ? "tv" : "movie")
@@ -44,7 +45,7 @@ const onDetail = (id, type) => {
 }`}
 
 
-                onClick={() => toggleItem(movie)}
+                onClick={async () => await toggleItem(movie)}
               />
             </div>
 

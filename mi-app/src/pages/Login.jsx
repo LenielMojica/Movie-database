@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 import {login} from "../services/auth"
 import { useNavigate } from "react-router-dom"
 const Login =({})=>{
+
   const [form, setForm]= useState({user:"",password:""})
   const navigate=useNavigate()
   const onLogin =(e)=>{
