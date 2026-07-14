@@ -8,20 +8,21 @@ import MyList from "./pages/MyList";
 import { SHOWS, MOVIES } from "./services/categories"
 import Browse from "./components/Browse";
 import MyListProvider from './components/MyListProvider';
-
+import ProtectedRoute from './components/ProtectedRoute';
 const App = () => {
   return (
     <ErrorBoundary fallback={<p>Something went wrong</p>}>
       <Routes>
         <Route path="/" element={<Login />} />
-
-       <Route element={<Layout />}>
+<Route element={<ProtectedRoute/>}>      
+ <Route element={<Layout />}>
           <Route path="/home" element={<Home />} />
           <Route path="/search" element={<Search />} />
           <Route path="/shows" element={<Browse rows={SHOWS} heroType={"tv"} />} />
           <Route path="/movies" element={<Browse rows={MOVIES} heroType={"movie"} />} />
           <Route path="/mylist" element={<MyList />} />
-          
+          </Route>
+
        </Route>
       </Routes>
    

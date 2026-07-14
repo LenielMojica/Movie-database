@@ -3,12 +3,15 @@ import { useState } from "react"
 import logo from "../assets/images/logo.svg" 
 import bg from "../assets/images/hero-img.jpg"
 import { Link } from "react-router-dom"
-import {login} from "../services/auth"
+import {login as goIn} from "../services/auth"
+import { AuthContext } from "../components/AuthContext"
 import { useNavigate } from "react-router-dom"
+import { useContext } from "react"
 const Login =({})=>{
-
+  const [loginStatus, setLoginStatus]=useState()
   const [form, setForm]= useState({user:"",password:""})
   const navigate=useNavigate()
+  const { login  } = useContext(AuthContext)
   const onLogin =(e)=>{
    
    
@@ -20,20 +23,27 @@ const Login =({})=>{
     }
     const handleSubmit= async(e)=>{
 e.preventDefault()
+if (!form.password || !form.user){
+  setLoginStatus("Debes introducir tus credenciales")
+return
+}
 
 try {
-  const data =await login(form,"http://localhost:3000/login")
+  const data =await goIn(form)
 localStorage.setItem("token",data.token)
+login(localStorage.getItem("token"))
   navigate("/home")
 
 }
 catch(e){
-    console.log(e)
+    setLoginStatus("Credenciales invalidas")
   }
   }
   
   console.log(form)
+ 
   return (
+   
     <div style={{backgroundImage:`url(${bg})`}}
     className="min-h-screen bg-cover bg-center bg-black/50">
     <div className="min-h-screen bg-black/60">
@@ -65,7 +75,7 @@ catch(e){
                         onChange={onLogin}
                           name="password"
                         />
-      
+       {loginStatus && <p>{loginStatus}</p>}
 
      <Button
     
@@ -98,6 +108,6 @@ catch(e){
 </div>
     </div>
   )  
-}
+} 
 
 export default Login

@@ -2,8 +2,8 @@ import { useContext } from "react"
 import { MyListContext } from "../components/MyListContext"
 import ResultsGrid from "../components/ResultsGrid"
 import { useEffect } from "react"
-import { useState } from "react"
-import { goToMyList } from "../services/auth"
+
+
 import { Navigate, useNavigate } from "react-router-dom"
 
 const MyList = () => {

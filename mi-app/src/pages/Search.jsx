@@ -6,8 +6,11 @@ import { useEffect,useState } from "react";
 import { getList,withTrailerKeys,getGenres } from '../services/tmdb';
 import Footer from "../components/Footer";
 import GridSkeleton from "../components/GridSkeleton";
+import { goToPage } from "../services/auth";
+import { useContext } from "react";
+import { AuthContext } from "../components/AuthContext";
 const Search = ({})=>{
-  
+   const {logout}=useContext(AuthContext)
  const [error, setError]= useState(false)
    const [loading,setLoading]=useState(true)
   const navigate = useNavigate()
@@ -16,6 +19,19 @@ const [items, setItems]= useState([])
       const q= searchParams.get("q")
 
        useEffect (()=>{
+        const search =async()=>{
+          try{
+            await goToPage("/search")
+          }
+          catch(e){
+            
+        
+       
+        await logout()
+             
+
+          }
+        }
 const fetchSearch = async ()=>{
   
  
@@ -43,6 +59,7 @@ finally{
 
 
 }
+search()
 fetchSearch()
 },[q])  
  const genre_ids = [...new Set(items.flatMap(movie => movie.genre_ids))]

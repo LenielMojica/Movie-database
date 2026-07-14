@@ -1,42 +1,37 @@
 import { useEffect, useState } from "react";
 import { MyListContext } from "./MyListContext";
+
 import { addToMyList,goToMyList,removeFromMyList } from "../services/auth";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "./AuthContext";
 const MyListProvider= ({children})=>{
+    const {logout,isAuth}=useContext(AuthContext)
     const navigate=useNavigate()
     const [loading, setLoading]=useState(true)
     const [myList, setMyList]= useState([])
-    const handleAuthError = (e) => {
-    if (e.response?.status === 401) {
-        localStorage.removeItem("token")
-        setMyList([])
-        navigate("/")
-    } else {
-        navigate("/home")
-    }
-}
-
+  
      const load =async ()=>{
     try {
 
    setLoading(true)
-      const res =await goToMyList("http://localhost:3000/myList")
+      const res =await goToMyList()
  setMyList(res)
     }
     
       
    
     catch (e){
-handleAuthError(e)
+ await logout()
   }
   finally{
     setLoading(false)
   }
   }
   useEffect(()=>{
-    
-    load()
- },[])
+    if(isAuth) load()
+   
+ },[isAuth])
 
     const toggleItem= async (item)=>{
         try{

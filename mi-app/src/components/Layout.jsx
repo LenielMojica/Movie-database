@@ -4,6 +4,7 @@ import Footer from "./Footer"
 import { useSearchParams,useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 import DetailModal from "./DetailModal"
+import { jwtDecode} from 'jwt-decode'
 const Layout = () => {
     
 const navigate = useNavigate()
@@ -18,6 +19,7 @@ useEffect(() => {
   if (q) navigate('/home', { replace: true })
 }, [])
 
+   
 return (
   <div className="flex flex-col min-h-screen overflow-x-hidden bg-[#141414] text-white">
    
@@ -29,6 +31,7 @@ return (
     <Outlet
     
     />   
+    
   <DetailModal
   id={id}
   type={type}
