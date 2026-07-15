@@ -43,7 +43,7 @@ const [movie, setMovie]=useState(null)
 useEffect(()=>{
   if (!movie?.backdrop_path) return
   const getColor = async()=>{
-    const color= await fac.getColorAsync(`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`)
+    const color= await fac.getColorAsync(`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`,{ crossOrigin: 'anonymous' })
     setMainColor(color.hex)
 
    }
