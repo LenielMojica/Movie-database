@@ -2,11 +2,11 @@ import Button from "../components/Button"
 import { useState } from "react"
 import logo from "../assets/images/logo.svg" 
 import bg from "../assets/images/hero-img.jpg"
-import {login as goIn} from "../services/auth"
+import {signIn} from "../services/auth"
 import { AuthContext } from "../components/AuthContext"
 import { Link, useNavigate } from "react-router-dom"
 import { useContext } from "react"
-const Login =({})=>{
+const Register =({})=>{
   const [loginStatus, setLoginStatus]=useState()
   const [form, setForm]= useState({user:"",password:""})
   const navigate=useNavigate()
@@ -26,16 +26,21 @@ if (!form.password || !form.user){
   setLoginStatus("Debes introducir tus credenciales")
 return
 }
+if (/\d/.test(form.user)) {
+  setLoginStatus("El usuario no puede contener números")
+  return
+}
 
 try {
-  const data =await goIn(form)
-localStorage.setItem("token",data.token)
-login(localStorage.getItem("token"))
-  navigate("/home")
+  const data =await signIn(form)
+
+
+  navigate("/")
 
 }
 catch(e){
-    setLoginStatus("Credenciales invalidas")
+  if(e.status===409)
+    setLoginStatus("User already taken")
   }
   }
   
@@ -55,12 +60,12 @@ catch(e){
     onSubmit={handleSubmit}
     >
         <div className=" flex flex-col justify-center gap-4 items-center">
-            <h1 className="font-bold text-3xl self-start    ">Log in</h1>
+            <h1 className="font-bold text-3xl self-start    ">Sign in</h1>
      
             <input 
             type="text" 
             className="w-full px-4 py-3 rounded  text-white placeholder-zinc-400 focus:outline-none ring-1 ring-zinc-400  focus:ring-red-600" 
-            placeholder="Email or mobile"
+            placeholder="Username"
             value={form.user}
             onChange={onLogin}
             name="user"
@@ -69,36 +74,29 @@ catch(e){
                         <input 
                         type="password" 
                         className="w-full px-4 py-3 rounded  text-white placeholder-zinc-400 focus:outline-none ring-1 ring-zinc-400  focus:ring-red-600" 
-                        placeholder="Password"
+                        placeholder="Set a password"
                         value={form.password}
                         onChange={onLogin}
                           name="password"
                         />
+                      
        {loginStatus && <p>{loginStatus}</p>}
 
      <Button
     
-       text={"Log in"}
+       text={"Sign in"}
        style={" hover:bg-red-hover bg-netflix cursor-pointer w-full px-3 py-2 rounded  font-semibold text-white "}
         >
 
         </Button> 
-<h2 className="text-[#b3b3b3]">OR</h2>
-  <Button
-       text={"Use a code"}
-        style={" bg-[#221f1f]  cursor-pointer w-full px-3 py-2 rounded  font-semibold text-white"}
-        >
 
-        </Button>
-        <a href="#" className="underline text-lg">Forgot Password?</a>
+  
         <div className="flex flex-col gap-4 items-start">
-          <div className="flex flex-row items-center gap-2">  <input type="checkbox"/>
-        <p className="text-lg">Remember me</p></div>
-         <p className="text-lg font-normal">New to netflix? <Link to="/register"><span className="font-bold ">Sign up now</span></Link></p>
+         
+
         <p>
             This page is protected by Google reCAPTCHA to ensure you are not a bot</p>
-    <p className="p-3">  <a href="" className="text-blue-500 underline"> Learn more</a>
-        </p>
+   
         </div>
        
         </div>
@@ -109,4 +107,4 @@ catch(e){
   )  
 } 
 
-export default Login
+export default Register

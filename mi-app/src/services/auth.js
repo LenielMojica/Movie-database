@@ -1,11 +1,14 @@
-import axios from 'axios'
+
 import { instance } from './axios'
 export const login= async (datos)=>{
 const res= await instance.post("/login",datos)
 return res.data
 }
 
-
+export const signIn= async (datos)=>{
+const res= await instance.post("/register",datos)
+return res.data
+}
 
 export const goToPage= async ()=>{
 const res= await instance.get("/auth/all")

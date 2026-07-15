@@ -9,11 +9,13 @@ import { SHOWS, MOVIES } from "./services/categories"
 import Browse from "./components/Browse";
 import MyListProvider from './components/MyListProvider';
 import ProtectedRoute from './components/ProtectedRoute';
+import Register from './pages/Register'
 const App = () => {
   return (
     <ErrorBoundary fallback={<p>Something went wrong</p>}>
       <Routes>
         <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 <Route element={<ProtectedRoute/>}>      
  <Route element={<Layout />}>
           <Route path="/home" element={<Home />} />

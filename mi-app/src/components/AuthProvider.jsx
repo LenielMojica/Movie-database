@@ -29,8 +29,7 @@ return
  const time=  Date.now()
 if(payload.exp*1000<time) 
 {
- setIsAuth(false)
- localStorage.removeItem("token")
+ logout()
 }
 else{
     setIsAuth(true)
