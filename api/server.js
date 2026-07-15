@@ -10,7 +10,7 @@ dns.setServers(['8.8.8.8', '8.8.4.4'])
 
 const secret= process.env.JWT_SECRET;
 if (!secret) throw new Error("JWT_SECRET missing")
-app.use(cors({origin:"http://localhost:5173"}))
+app.use(cors({origin:"https://movie-database-black-eight.vercel.app/"}))
 app.use(express.json())
 
 mongoose.connect(process.env.MONGO_URI)

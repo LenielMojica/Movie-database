@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Dedicated instance for our backend so TMDB (global axios) stays untouched.
 export const instance = axios.create({
-  baseURL: "https://movie-database-scfo.onrender.com",
+  baseURL: import.meta.env.VITE_API_URL,
 })
 
 // Read the token per-request (not at create time) so it's always current. Must return config.
