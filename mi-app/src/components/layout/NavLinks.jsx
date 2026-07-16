@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Button from "./Button"
+import Button from "../ui/Button"
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
 const NavLinks =({style,nav, links,text,containerStyle, children})=>{
 

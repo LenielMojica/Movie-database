@@ -1,15 +1,15 @@
 
-import Button from "./Button"
-import logo from "../assets/images/netflix_logo_icon_170919.webp"
+import Button from "../ui/Button"
+import logo from "../../assets/images/netflix_logo_icon_170919.webp"
 import {Info, Play, VolumeX, Volume2} from 'lucide-react'
 import { FastAverageColor } from 'fast-average-color';
 import { useEffect, useState } from "react";
-import useHover from "../hooks/useHover";
-import IconButton from "./IconButton";
-import {getHeroItem} from "../services/tmdb"
+import useHover from "../../hooks/useHover";
+import IconButton from "../ui/IconButton";
+import {getHeroItem} from "../../services/tmdb"
 import Teaser from "./Teaser";
 import { useSearchParams } from "react-router-dom";
-import { HeroSkeleton } from "./HeroSkeleton";
+import { HeroSkeleton } from "../skeletons/HeroSkeleton";
 const HeroSection = ({type})=>{
 
 
@@ -43,7 +43,7 @@ const [movie, setMovie]=useState(null)
 useEffect(()=>{
   if (!movie?.backdrop_path) return
   const getColor = async()=>{
-    const color= await fac.getColorAsync(`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`,{ crossOrigin: 'anonymous' })
+    const color= await fac.getColorAsync(`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}?cors=true`,{ crossOrigin: 'anonymous' })
     setMainColor(color.hex)
 
    }

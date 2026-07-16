@@ -1,14 +1,14 @@
 import { useEffect, useState, useContext } from "react"
 import { useSearchParams } from "react-router-dom"
 import { Play, X, Plus, ThumbsUp, Check, Volume2, VolumeX } from "lucide-react"
-import { getDetails } from "../services/tmdb"
-import Button from "./Button"
-import IconButton from "./IconButton"
-import Badge from "./Badge"
-import { MyListContext } from "./MyListContext"
+import { getDetails } from "../../services/tmdb"
+import Button from "../ui/Button"
+import IconButton from "../ui/IconButton"
+import Badge from "../ui/Badge"
+import { MyListContext } from "../myList/MyListContext"
 import Teaser from "./Teaser"
-import useHover from "../hooks/useHover"
-import { ModalSkeleton } from "./ModalSkeleton"
+import useHover from "../../hooks/useHover"
+import { ModalSkeleton } from "../skeletons/ModalSkeleton"
 
 const formatDuration = (details) => {
   if (details?.number_of_seasons) {

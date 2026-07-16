@@ -3,7 +3,7 @@ import NavBar from "./NavBar"
 import Footer from "./Footer"
 import { useSearchParams,useNavigate } from "react-router-dom"
 import { useEffect } from "react"
-import DetailModal from "./DetailModal"
+import DetailModal from "../browse/DetailModal"
 import { jwtDecode} from 'jwt-decode'
 const Layout = () => {
     

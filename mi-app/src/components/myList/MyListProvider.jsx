@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { MyListContext } from "./MyListContext";
-import { addToMyList, goToMyList, removeFromMyList } from "../services/auth";
+import { addToMyList, goToMyList, removeFromMyList } from "../../services/auth";
 import { useContext } from "react";
-import { AuthContext } from "./AuthContext";
+import { AuthContext } from "../auth/AuthContext";
 
 const MyListProvider = ({ children }) => {
   const { isAuth } = useContext(AuthContext)

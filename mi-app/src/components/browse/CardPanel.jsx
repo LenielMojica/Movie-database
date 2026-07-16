@@ -1,8 +1,8 @@
 import { Play, Plus, ThumbsUp,Check, ChevronDown, Dot } from 'lucide-react';
-import Badge from './Badge';
+import Badge from '../ui/Badge';
 import { useContext } from 'react';
-import { MyListContext } from './MyListContext';
-import IconButton from './IconButton';
+import { MyListContext } from '../myList/MyListContext';
+import IconButton from '../ui/IconButton';
 import { useNavigate } from 'react-router-dom';
 
 import { useSearchParams } from 'react-router-dom';

@@ -1,6 +1,6 @@
 import Row from "./Row"
 import HeroSection from "./HeroSection"
-import { goToPage } from "../services/auth"
+import { goToPage } from "../../services/auth"
 import { useEffect } from "react"
 
 const Browse = ({ rows, heroType }) => {

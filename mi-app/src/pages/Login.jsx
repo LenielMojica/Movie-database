@@ -1,9 +1,9 @@
-import Button from "../components/Button"
+import Button from "../components/ui/Button"
 import { useState } from "react"
 import logo from "../assets/images/logo.svg" 
 import bg from "../assets/images/hero-img.jpg"
 import {login as goIn} from "../services/auth"
-import { AuthContext } from "../components/AuthContext"
+import { AuthContext } from "../components/auth/AuthContext"
 import { Link, useNavigate } from "react-router-dom"
 import { useContext } from "react"
 const Login =({})=>{

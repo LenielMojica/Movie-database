@@ -1,11 +1,11 @@
 import NavLinks from "./NavLinks"
-import Button from "./Button"
+import Button from "../ui/Button"
 import { useState, useRef, useEffect } from "react"
-import logo from "../assets/images/logo.svg"
+import logo from "../../assets/images/logo.svg"
 import { Link } from 'react-router-dom'
 import DeployableMenu from "./DeployableMenu"
 import { Search, Bell, ChevronDown, X } from "lucide-react"
-import avatar from "../assets/images/Avatar.jpg"
+import avatar from "../../assets/images/Avatar.jpg"
 
 const NavBar=({value, onSearch})=>{
 const inputRef=useRef(null)

@@ -1,9 +1,9 @@
 import { useState, useEffect,useRef } from "react"
 import MovieCard from "./MovieCard"
 import { ChevronRight,ChevronLeft } from "lucide-react";
-import Button from "./Button";
-import { getAll } from "../services/tmdb";
-import { RowSkeleton } from "./RowSkeleton";
+import Button from "../ui/Button";
+import { getAll } from "../../services/tmdb";
+import { RowSkeleton } from "../skeletons/RowSkeleton";
 
 
 const Row =({rowTitle, endpoint,type})=>{

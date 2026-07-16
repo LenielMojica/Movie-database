@@ -1,5 +1,5 @@
 import CardPanel from './CardPanel';
-import useHover from '../hooks/useHover';
+import useHover from '../../hooks/useHover';
 import Teaser from './Teaser';
 import { useSearchParams } from 'react-router-dom';
 const MovieCard = ({ movie, origin = "", width = "w-70" }) => {

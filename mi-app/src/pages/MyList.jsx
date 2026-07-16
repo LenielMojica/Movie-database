@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react"
-import { MyListContext } from "../components/MyListContext"
-import ResultsGrid from "../components/ResultsGrid"
-import GridSkeleton from "../components/GridSkeleton"
+import { MyListContext } from "../components/myList/MyListContext"
+import ResultsGrid from "../components/browse/ResultsGrid"
+import GridSkeleton from "../components/skeletons/GridSkeleton"
 
 const MyList = () => {
   const { myList, loading, load, error } = useContext(MyListContext)

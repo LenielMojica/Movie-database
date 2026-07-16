@@ -1,14 +1,14 @@
-import NavBar from "../components/NavBar"
-import GenreBanner from "../components/GenreBanner"
-import ResultsGrid from "../components/ResultsGrid"
+import NavBar from "../components/layout/NavBar"
+import GenreBanner from "../components/browse/GenreBanner"
+import ResultsGrid from "../components/browse/ResultsGrid"
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useEffect,useState } from "react";
 import { getList,withTrailerKeys,getGenres } from '../services/tmdb';
-import Footer from "../components/Footer";
-import GridSkeleton from "../components/GridSkeleton";
+import Footer from "../components/layout/Footer";
+import GridSkeleton from "../components/skeletons/GridSkeleton";
 import { goToPage } from "../services/auth";
 import { useContext } from "react";
-import { AuthContext } from "../components/AuthContext";
+import { AuthContext } from "../components/auth/AuthContext";
 const Search = ({})=>{
    const {logout}=useContext(AuthContext)
  const [error, setError]= useState(false)

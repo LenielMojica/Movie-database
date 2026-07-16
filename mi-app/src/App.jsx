@@ -2,13 +2,13 @@ import Home from './pages/Home'
 import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login'
 import Search from './pages/Search'
-import ErrorBoundary from "./components/ErrorBoundaryTree";
-import Layout from "./components/Layout"
+import ErrorBoundary from "./components/ui/ErrorBoundaryTree";
+import Layout from "./components/layout/Layout"
 import MyList from "./pages/MyList";
 import { SHOWS, MOVIES } from "./services/categories"
-import Browse from "./components/Browse";
-import MyListProvider from './components/MyListProvider';
-import ProtectedRoute from './components/ProtectedRoute';
+import Browse from "./components/browse/Browse";
+import MyListProvider from './components/myList/MyListProvider';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 import Register from './pages/Register'
 const App = () => {
   return (

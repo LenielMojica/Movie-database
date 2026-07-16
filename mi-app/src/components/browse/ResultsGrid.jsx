@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import MovieCard from "./MovieCard"
-import ErrorCard from "./ErrorCard"
+import ErrorCard from "../ui/ErrorCard"
 
 const ResultsGrid = ({ results }) => {
 if (results.length!=0){  return results.map((movie, index) => {
