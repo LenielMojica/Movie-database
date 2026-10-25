@@ -2,7 +2,7 @@
 
 A responsive Netflix-inspired streaming UI built with **React** and the **TMDB API**. Browse trending movies and shows, watch trailers on hover, search the catalog, save titles to your list, and open a full detail modal — all with a Netflix-like look and feel.
 
-> The application lives in the [`mi-app/`](mi-app) directory.
+> The application lives in the [`moviedb-explorer/`](moviedb-exlorer) directory.
 
 **[Live Demo](https://movie-database-black-eight.vercel.app/)** · Built with React + TMDB
 
