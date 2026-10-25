@@ -2,7 +2,7 @@
 
 A responsive Netflix-inspired streaming UI built with **React** and the **TMDB API**. Browse trending movies and shows, watch trailers on hover, search the catalog, save titles to your list, and open a full detail modal — all with a Netflix-like look and feel.
 
-> The application lives in the [`moviedb-explorer/`](moviedb-exlorer) directory.
+> The application lives in the [`moviedb-explorer/`](moviedb-explorer) directory.
 
 **[Live Demo](https://movie-database-black-eight.vercel.app/)** · Built with React + TMDB
 
@@ -52,7 +52,7 @@ A responsive Netflix-inspired streaming UI built with **React** and the **TMDB A
 ```bash
 # 1. Clone the repo
 git clone <your-repo-url>
-cd "Movie database/mi-app"
+cd "Movie database/moviedb-exlorer"
 
 # 2. Install dependencies
 npm install
@@ -63,7 +63,7 @@ npm run dev
 
 ### Environment variables
 
-Create a `.env` file inside `mi-app/`:
+Create a `.env` file inside `moviedb-exlorer/`:
 
 ```env
 VITE_API_KEY=your_tmdb_api_key_here
@@ -73,7 +73,7 @@ VITE_API_KEY=your_tmdb_api_key_here
 
 ## Available Scripts
 
-Run from inside `mi-app/`:
+Run from inside `moviedb-exlorer/`:
 
 | Script | Description |
 |--------|-------------|
